@@ -1,0 +1,25 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class BuildingSpaceAvailable : MonoBehaviour
+{
+    void OnTriggerEnter(Collider c)
+    {
+        
+        //Collider has to be set up to only detect buildings
+        //Colors the preview red (only a previewd building should possibly be detected)
+        foreach (MeshRenderer meshRenderer in c.GetComponentsInChildren<MeshRenderer>())
+        {
+            foreach (Material mat in meshRenderer.materials)
+            {
+                //Checks if the current object is the preview because c reffers to both objects
+                if (mat.GetInt("_isPreview") == 1)
+                {
+                    mat.SetColor("_previewColor", new Color(1f, 0.1f, 0.1f));
+                }  
+            }
+        }
+    }
+}

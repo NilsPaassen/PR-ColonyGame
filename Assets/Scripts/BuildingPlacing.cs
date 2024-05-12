@@ -10,12 +10,11 @@ public class BuildingPlacing : MonoBehaviour
     //for building preview
     private GameObject previousHit;
     private GameObject previousInstance;
-    private Color PREVIEW_GREEN = new Color(20, 255, 20);
-    private Color PREVIEW_RED = new Color(20, 255, 20);
+    private Color PREVIEW_GREEN = new Color(0.1f, 1f, 0.1f);
+
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -38,30 +37,37 @@ public class BuildingPlacing : MonoBehaviour
                 {
                     Destroy(previousInstance, 0);
                 }
-                previousInstance = Instantiate(selectedBuilding, hit.transform.position, UnityEngine.Quaternion.identity);
-
-                foreach (Material mat in previousInstance.GetComponent<MeshRenderer>().materials)
-                {
-                    Debug.Log(mat.GetFloat("_alpha"));
-                }
+                previousInstance = Instantiate(selectedBuilding, hit.transform.position + selectedBuilding.transform.position, UnityEngine.Quaternion.identity);
             }
         }
         else if (previousInstance != null)
         {
             Destroy(previousInstance, 0);
         }
-        // 0 = left
-        if (Input.GetMouseButtonDown(0) && inBuildMode && previousInstance != null)
-        {
 
-            //needs to set material to actual material
-            foreach (Material mat in previousInstance.GetComponent<MeshRenderer>().materials)
+
+        // 0 = left
+        if (Input.GetMouseButtonDown(0) &&
+        inBuildMode &&
+        //Checks if there is a preview
+        previousInstance != null &&
+        //Checks if preview is currently intersecting by checking if the color has been changed to red by the BuildingSpaceAvailable Script
+        previousInstance.GetComponent<MeshRenderer>().material.GetColor("_previewColor") != new Color(1f, 0.1f, 0.1f))
+        {
+            //Sets the Material Parameters in all Children of the placed Building
+            foreach (MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>())
             {
-                mat.SetColor("_previewColor", Color.black);
-                //SetInt is apparently how you change bools(0=false;1=true)
-                mat.SetInt("_isPreview", 0);
-                mat.SetFloat("_alpha", 1);
+                foreach (Material mat in meshRenderer.materials)
+                {
+                    mat.SetColor("_previewColor", Color.black);
+                    //SetInt is apparently how you change bools(0=false;1=true)
+                    mat.SetInt("_isPreview", 0);
+                    mat.SetFloat("_alpha", 1);
+                }
             }
+
+            //sets Is Trigger to true so that the building can now interact with the Building preview
+            previousInstance.GetComponent<Collider>().isTrigger = true;
             //makes previousInstance permament by removing the refrenced GameObject from the variable, thus it no longer gets deleted
             previousInstance = null;
         }
