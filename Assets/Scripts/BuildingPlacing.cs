@@ -29,13 +29,12 @@ public class BuildingPlacing : MonoBehaviour
             buildingRotation = Quaternion.identity;
         }
 
-
-
         if (inBuildMode)
         {
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 100.0f) && hit.collider.gameObject.layer == 3 && hit.collider.gameObject != previousHit)
+            //layer 3 == BuildableOn
+            if (Physics.Raycast(ray, out hit, 1000.0f) && hit.collider.gameObject.layer == LayerMask.NameToLayer("BuildableOn") && hit.collider.gameObject != previousHit)
             {
                 //if a preview Instance exists it gets destroyed
                 if (previousInstance != null)
@@ -53,17 +52,13 @@ public class BuildingPlacing : MonoBehaviour
         //Rotate by 90°
         if (Input.GetKeyDown(KeyCode.R) && previousInstance != null)
         {
-            previousInstance.transform.Rotate(transform.up,90f);
-            buildingRotation =previousInstance.transform.rotation;
+            previousInstance.transform.Rotate(transform.up, 90f);
+            buildingRotation = previousInstance.transform.rotation;
         }
 
         // 0 = left
-        if (Input.GetMouseButtonDown(0) &&
-        inBuildMode &&
-        //Checks if there is a preview
-        previousInstance != null &&
         //Checks if preview is currently intersecting by checking if the color has been changed to red by the BuildingSpaceAvailable Script
-        previousInstance.GetComponent<MeshRenderer>().material.GetColor("_previewColor") != new Color(1f, 0.1f, 0.1f))
+        if (Input.GetMouseButtonDown(0) && inBuildMode && previousInstance != null && previousInstance.GetComponent<MeshRenderer>().material.GetColor("_previewColor") != new Color(1f, 0.1f, 0.1f))
         {
             //Sets the Material Parameters in all Children of the placed Building
             foreach (MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>())
@@ -83,6 +78,13 @@ public class BuildingPlacing : MonoBehaviour
 
             //sets Is Trigger to true so that the building can now interact with the Building preview
             previousInstance.GetComponent<Collider>().isTrigger = true;
+
+            //tries to activate the building specific scripts
+            if (previousInstance.TryGetComponent<ConveyorBelt>(out ConveyorBelt conveyorBelt))
+            {
+                conveyorBelt.OnBuild();
+            }
+
             //makes previousInstance permament by removing the refrenced GameObject from the variable, thus it no longer gets deleted
             previousInstance = null;
         }
