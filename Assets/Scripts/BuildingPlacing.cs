@@ -12,6 +12,8 @@ public class BuildingPlacing : MonoBehaviour
     private GameObject previousInstance;
     private Color PREVIEW_GREEN = new Color(0.1f, 1f, 0.1f);
 
+    //for rotation 
+    private Quaternion buildingRotation;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +26,10 @@ public class BuildingPlacing : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {
             inBuildMode = !inBuildMode;
+            buildingRotation = Quaternion.identity;
         }
+
+
 
         if (inBuildMode)
         {
@@ -37,7 +42,7 @@ public class BuildingPlacing : MonoBehaviour
                 {
                     Destroy(previousInstance, 0);
                 }
-                previousInstance = Instantiate(selectedBuilding, hit.transform.position + selectedBuilding.transform.position, UnityEngine.Quaternion.identity);
+                previousInstance = Instantiate(selectedBuilding, hit.transform.position + selectedBuilding.transform.position, buildingRotation);
             }
         }
         else if (previousInstance != null)
@@ -45,6 +50,12 @@ public class BuildingPlacing : MonoBehaviour
             Destroy(previousInstance, 0);
         }
 
+        //Rotate by 90°
+        if (Input.GetKeyDown(KeyCode.R) && previousInstance != null)
+        {
+            previousInstance.transform.Rotate(transform.up,90f);
+            buildingRotation =previousInstance.transform.rotation;
+        }
 
         // 0 = left
         if (Input.GetMouseButtonDown(0) &&
@@ -59,10 +70,14 @@ public class BuildingPlacing : MonoBehaviour
             {
                 foreach (Material mat in meshRenderer.materials)
                 {
-                    mat.SetColor("_previewColor", Color.black);
-                    //SetInt is apparently how you change bools(0=false;1=true)
-                    mat.SetInt("_isPreview", 0);
-                    mat.SetFloat("_alpha", 1);
+                    if (mat.HasColor("_previewColor"))
+                    {
+                        mat.SetColor("_previewColor", Color.black);
+                        //SetInt is apparently how you change bools(0=false;1=true)
+                        mat.SetInt("_isPreview", 0);
+                        mat.SetFloat("_alpha", 1);
+                    }
+
                 }
             }
 

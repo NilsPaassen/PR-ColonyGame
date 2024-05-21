@@ -15,7 +15,7 @@ public class BuildingSpaceAvailable : MonoBehaviour
             foreach (Material mat in meshRenderer.materials)
             {
                 //Checks if the current object is the preview because c reffers to both objects
-                if (mat.GetInt("_isPreview") == 1)
+                if (mat.HasInt("_isPreview") && mat.GetInt("_isPreview") == 1)
                 {
                     mat.SetColor("_previewColor", new Color(1f, 0.1f, 0.1f));
                 }  
