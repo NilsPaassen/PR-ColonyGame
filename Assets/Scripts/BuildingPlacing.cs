@@ -11,6 +11,7 @@ public class BuildingPlacing : MonoBehaviour
     private InputAction placeAction;
 
     private bool inBuildMode = false;
+
     //Cube placeholder until real building possible
     public GameObject selectedBuilding;
 
@@ -19,8 +20,9 @@ public class BuildingPlacing : MonoBehaviour
     private GameObject previousInstance;
     private Color PREVIEW_GREEN = new Color(0.1f, 1f, 0.1f);
 
-    //for rotation 
+    //for rotation
     private Quaternion buildingRotation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +45,9 @@ public class BuildingPlacing : MonoBehaviour
             {
                 buildModeActions.Disable();
                 inBuildMode = false;
-            }  else {
+            }
+            else
+            {
                 buildingRotation = Quaternion.identity;
                 inBuildMode = true;
                 buildModeActions.Enable();
@@ -55,14 +59,22 @@ public class BuildingPlacing : MonoBehaviour
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //layer 3 == BuildableOn
-            if (Physics.Raycast(ray, out hit, 1000.0f) && hit.collider.gameObject.layer == LayerMask.NameToLayer("BuildableOn") && hit.collider.gameObject != previousHit)
+            if (
+                Physics.Raycast(ray, out hit, 1000.0f)
+                && hit.collider.gameObject.layer == LayerMask.NameToLayer("BuildableOn")
+                && hit.collider.gameObject != previousHit
+            )
             {
                 //if a preview Instance exists it gets destroyed
                 if (previousInstance != null)
                 {
                     Destroy(previousInstance, 0);
                 }
-                previousInstance = Instantiate(selectedBuilding, hit.transform.position + selectedBuilding.transform.position, buildingRotation);
+                previousInstance = Instantiate(
+                    selectedBuilding,
+                    hit.transform.position + selectedBuilding.transform.position,
+                    buildingRotation
+                );
             }
         }
         else if (previousInstance != null)
@@ -79,10 +91,16 @@ public class BuildingPlacing : MonoBehaviour
 
         // 0 = left
         //Checks if preview is currently intersecting by checking if the color has been changed to red by the BuildingSpaceAvailable Script
-        if (placeAction.WasPressedThisFrame() && previousInstance.GetComponent<MeshRenderer>().material.GetColor("_previewColor") != new Color(1f, 0.1f, 0.1f))
+        if (
+            placeAction.WasPressedThisFrame()
+            && previousInstance.GetComponent<MeshRenderer>().material.GetColor("_previewColor")
+                != new Color(1f, 0.1f, 0.1f)
+        )
         {
             //Sets the Material Parameters in all Children of the placed Building
-            foreach (MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>())
+            foreach (
+                MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>()
+            )
             {
                 foreach (Material mat in meshRenderer.materials)
                 {
@@ -93,7 +111,6 @@ public class BuildingPlacing : MonoBehaviour
                         mat.SetInt("_isPreview", 0);
                         mat.SetFloat("_alpha", 1);
                     }
-
                 }
             }
 

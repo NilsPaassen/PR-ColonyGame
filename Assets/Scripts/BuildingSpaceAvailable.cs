@@ -7,7 +7,6 @@ public class BuildingSpaceAvailable : MonoBehaviour
 {
     void OnTriggerEnter(Collider c)
     {
-        
         //Collider has to be set up to only detect buildings
         //Colors the preview red (only a previewd building should possibly be detected)
         foreach (MeshRenderer meshRenderer in c.GetComponentsInChildren<MeshRenderer>())
@@ -18,7 +17,7 @@ public class BuildingSpaceAvailable : MonoBehaviour
                 if (mat.HasInt("_isPreview") && mat.GetInt("_isPreview") == 1)
                 {
                     mat.SetColor("_previewColor", new Color(1f, 0.1f, 0.1f));
-                }  
+                }
             }
         }
     }

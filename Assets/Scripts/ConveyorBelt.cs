@@ -4,22 +4,15 @@ using UnityEngine;
 
 public class ConveyorBelt : MonoBehaviour
 {
-
     private GameObject nextConveyorBelt;
     public GameObject[] carriedObjects = new GameObject[3];
     private float speedModifier = 1f;
 
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    void Start() { }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
+    void Update() { }
 
     public GameObject CheckForFrontConveyor()
     {
@@ -36,7 +29,7 @@ public class ConveyorBelt : MonoBehaviour
     public void OnBuild()
     {
         nextConveyorBelt = CheckForFrontConveyor();
-        Invoke("TransferCarriedObjects",1f*speedModifier);
+        Invoke("TransferCarriedObjects", 1f * speedModifier);
     }
 
     private void TransferCarriedObjecs()
@@ -49,7 +42,6 @@ public class ConveyorBelt : MonoBehaviour
                 next.carriedObjects[2] = carriedObjects[0];
                 carriedObjects[0] = null;
             }
-
         }
         for (int i = 0; i < carriedObjects.Length - 1; i++)
         {
@@ -59,7 +51,6 @@ public class ConveyorBelt : MonoBehaviour
                 carriedObjects[i + 1] = null;
             }
         }
-        Invoke("TransferCarriedObjects",1f*speedModifier);
+        Invoke("TransferCarriedObjects", 1f * speedModifier);
     }
-
 }
