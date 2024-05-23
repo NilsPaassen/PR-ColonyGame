@@ -51,5 +51,18 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "PR-ColonyGame.sln"
+    "dotnet.defaultSolution": "PR-ColonyGame.sln",
+    "files.encoding": "utf8",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.rulers": [80],
+    "files.trimTrailingWhitespace": false,
+    "files.eol": "\n",
+    "files.insertFinalNewline": false,
+    "files.trimFinalNewlines": false,
+    "[csharp]": {
+        "editor.tabSize": 4,
+        "editor.rulers": [100],
+        "editor.defaultFormatter": "csharpier.csharpier-vscode"
+    }
 }

@@ -1,0 +1,22 @@
+on:
+  push:
+    branches:
+      - main
+name: Format code
+concurrency:
+  group: format-code
+  cancel-in-progress: true
+permissions:
+  contents: write
+jobs:
+  format-code:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4.1.6
+      - run: |
+          dotnet tool restore
+          dotnet csharpier .
+          git config --global user.name "GitHub Actions"
+          git config --global user.email actions@noreply.github.com
+          git commit -am "Format code" || true
+          git push

@@ -1,5 +1,9 @@
 {
     "recommendations": [
-      "visualstudiotoolsforunity.vstuc"
+      "visualstudiotoolsforunity.vstuc",
+      "editorconfig.editorconfig",
+      "csharpier.csharpier-vscode",
+      "github.vscode-pull-request-github",
+      "eamodio.gitlens"
     ]
 }
