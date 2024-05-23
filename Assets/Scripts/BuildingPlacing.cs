@@ -1,7 +1,14 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static Actions;
 
 public class BuildingPlacing : MonoBehaviour
 {
+    private Actions actions;
+    private InputAction buildModeAction;
+    private BuildModeActions buildModeActions;
+    private InputAction rotateAction;
+    private InputAction placeAction;
 
     private bool inBuildMode = false;
     //Cube placeholder until real building possible
@@ -17,16 +24,30 @@ public class BuildingPlacing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        actions = new();
+        PlayerActions playerActions = actions.Player;
+        playerActions.Enable();
+        buildModeAction = playerActions.BuildMode;
+        buildModeActions = actions.BuildMode;
+        rotateAction = buildModeActions.Rotate;
+        placeAction = buildModeActions.Place;
     }
 
     // Update is called once per frame
     void Update()
     {
         //When B is pressed go to build mode
-        if (Input.GetKeyDown(KeyCode.B))
+        if (buildModeAction.WasPressedThisFrame())
         {
-            inBuildMode = !inBuildMode;
-            buildingRotation = Quaternion.identity;
+            if (inBuildMode)
+            {
+                buildModeActions.Disable();
+                inBuildMode = false;
+            }  else {
+                buildingRotation = Quaternion.identity;
+                inBuildMode = true;
+                buildModeActions.Enable();
+            }
         }
 
         if (inBuildMode)
@@ -50,7 +71,7 @@ public class BuildingPlacing : MonoBehaviour
         }
 
         //Rotate by 90°
-        if (Input.GetKeyDown(KeyCode.R) && previousInstance != null)
+        if (rotateAction.WasPressedThisFrame())
         {
             previousInstance.transform.Rotate(transform.up, 90f);
             buildingRotation = previousInstance.transform.rotation;
@@ -58,7 +79,7 @@ public class BuildingPlacing : MonoBehaviour
 
         // 0 = left
         //Checks if preview is currently intersecting by checking if the color has been changed to red by the BuildingSpaceAvailable Script
-        if (Input.GetMouseButtonDown(0) && inBuildMode && previousInstance != null && previousInstance.GetComponent<MeshRenderer>().material.GetColor("_previewColor") != new Color(1f, 0.1f, 0.1f))
+        if (placeAction.WasPressedThisFrame() && previousInstance.GetComponent<MeshRenderer>().material.GetColor("_previewColor") != new Color(1f, 0.1f, 0.1f))
         {
             //Sets the Material Parameters in all Children of the placed Building
             foreach (MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>())
