@@ -4,7 +4,6 @@ using static Actions;
 
 public class BuildingPlacing : MonoBehaviour
 {
-    private Actions actions;
     private InputAction buildModeAction;
     private BuildModeActions buildModeActions;
     private InputAction rotateAction;
@@ -26,7 +25,7 @@ public class BuildingPlacing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        actions = new();
+        Actions actions = new();
         PlayerActions playerActions = actions.Player;
         playerActions.Enable();
         buildModeAction = playerActions.BuildMode;
