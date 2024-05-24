@@ -29,7 +29,7 @@ public class ConveyorBelt : MonoBehaviour
     public void OnBuild()
     {
         nextConveyorBelt = CheckForFrontConveyor();
-        Invoke("TransferCarriedObjects", 1f * speedModifier);
+        Invoke("TransferCarriedObjecs", 1f * speedModifier);
     }
 
     private void TransferCarriedObjecs()
