@@ -6,6 +6,8 @@ public class MainCamera : MonoBehaviour
 {
     private InputAction moveAction;
 
+    public int metersPerSecond;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,11 +16,11 @@ public class MainCamera : MonoBehaviour
         moveAction = playerActions.Move;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         Vector3 move = moveAction.ReadValue<Vector2>();
         Vector3 rotatedMove = transform.rotation * new Vector3(move.x, 0, move.y);
         rotatedMove.y = 0;
-        transform.position += rotatedMove.normalized / 2;
+        transform.position += rotatedMove.normalized * metersPerSecond * Time.deltaTime;
     }
 }
