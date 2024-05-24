@@ -5,7 +5,7 @@ using static Actions;
 public class MainCamera : MonoBehaviour
 {
     private InputAction moveAction;
-    
+
     // Start is called before the first frame update
     void Start()
     {
