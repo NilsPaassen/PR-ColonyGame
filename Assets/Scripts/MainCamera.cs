@@ -16,11 +16,12 @@ public class MainCamera : MonoBehaviour
         moveAction = playerActions.Move;
     }
 
+    // Update is called once per frame
     void Update()
     {
         Vector3 move = moveAction.ReadValue<Vector2>();
         Vector3 rotatedMove = transform.rotation * new Vector3(move.x, 0, move.y);
         rotatedMove.y = 0;
-        transform.position += rotatedMove.normalized * metersPerSecond * Time.deltaTime;
+        transform.position += metersPerSecond * Time.deltaTime * rotatedMove.normalized;
     }
 }
