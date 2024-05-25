@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static Actions;
@@ -21,6 +22,9 @@ public class BuildingPlacing : MonoBehaviour
 
     //for rotation
     private Quaternion buildingRotation;
+
+    //for checking if ground type
+    private String groundTag;
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +78,23 @@ public class BuildingPlacing : MonoBehaviour
                     hit.transform.position + selectedBuilding.transform.position,
                     buildingRotation
                 );
+                groundTag = hit.collider.gameObject.tag;
+                //checks if mine is buildable
+                if (previousInstance.CompareTag("Mine") & !(groundTag == "IronOre" || groundTag == "Cole" || groundTag == "CopperOre"))
+                {
+                    foreach (
+                MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>()
+            )
+                    {
+                        foreach (Material mat in meshRenderer.materials)
+                        {
+                            if (mat.HasColor("_previewColor"))
+                            {
+                                mat.SetColor("_previewColor", new Color(1f, 0.1f, 0.1f));
+                            }
+                        }
+                    }
+                }
             }
         }
         else if (previousInstance != null)
@@ -84,7 +105,7 @@ public class BuildingPlacing : MonoBehaviour
         //Rotate by 90°
         if (rotateAction.WasPressedThisFrame())
         {
-            previousInstance.transform.Rotate(new Vector3(0,1,0), 90f,Space.World);
+            previousInstance.transform.Rotate(new Vector3(0, 1, 0), 90f, Space.World);
             buildingRotation = previousInstance.transform.rotation;
         }
 
@@ -121,9 +142,15 @@ public class BuildingPlacing : MonoBehaviour
             {
                 conveyorBelt.OnBuild();
             }
+            if (previousInstance.TryGetComponent<Mine>(out Mine mine))
+            {
+                mine.OnBuild(groundTag);
+            }
 
             //makes previousInstance permament by removing the refrenced GameObject from the variable, thus it no longer gets deleted
             previousInstance = null;
         }
     }
+
+
 }
