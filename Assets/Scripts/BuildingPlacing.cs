@@ -80,9 +80,7 @@ public class BuildingPlacing : MonoBehaviour
                 );
                 groundTag = hit.collider.gameObject.tag;
                 //checks if mine is buildable
-                if (
-                    !BuildingIsPlacable()
-                )
+                if (!BuildingIsPlacable())
                 {
                     foreach (
                         MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>()
@@ -162,9 +160,12 @@ public class BuildingPlacing : MonoBehaviour
             return false;
         }
         //cannot build a mine on a ground plane that is not tagged with one of the minable things
-        if (previousInstance.CompareTag("Mine") &! (groundTag == "IronOre" || groundTag == "Cole" || groundTag == "CopperOre"))
+        if (
+            previousInstance.CompareTag("Mine")
+            & !(groundTag == "IronOre" || groundTag == "Cole" || groundTag == "CopperOre")
+        )
         {
-            return false; 
+            return false;
         }
         return true;
     }
