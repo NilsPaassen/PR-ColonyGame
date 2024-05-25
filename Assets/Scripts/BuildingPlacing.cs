@@ -84,7 +84,7 @@ public class BuildingPlacing : MonoBehaviour
         //Rotate by 90°
         if (rotateAction.WasPressedThisFrame())
         {
-            previousInstance.transform.Rotate(new Vector3(0,1,0), 90f,Space.World);
+            previousInstance.transform.Rotate(new Vector3(0, 1, 0), 90f, Space.World);
             buildingRotation = previousInstance.transform.rotation;
         }
 
