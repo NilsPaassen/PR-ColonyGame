@@ -80,11 +80,14 @@ public class BuildingPlacing : MonoBehaviour
                 );
                 groundTag = hit.collider.gameObject.tag;
                 //checks if mine is buildable
-                if (previousInstance.CompareTag("Mine") & !(groundTag == "IronOre" || groundTag == "Cole" || groundTag == "CopperOre"))
+                if (
+                    previousInstance.CompareTag("Mine")
+                    & !(groundTag == "IronOre" || groundTag == "Cole" || groundTag == "CopperOre")
+                )
                 {
                     foreach (
-                MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>()
-            )
+                        MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>()
+                    )
                     {
                         foreach (Material mat in meshRenderer.materials)
                         {
@@ -151,6 +154,4 @@ public class BuildingPlacing : MonoBehaviour
             previousInstance = null;
         }
     }
-
-
 }
