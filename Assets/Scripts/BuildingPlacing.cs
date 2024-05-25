@@ -18,7 +18,6 @@ public class BuildingPlacing : MonoBehaviour
     //for building preview
     private GameObject previousHit;
     private GameObject previousInstance;
-    private Color PREVIEW_GREEN = new Color(0.1f, 1f, 0.1f);
 
     //for rotation
     private Quaternion buildingRotation;
@@ -79,7 +78,8 @@ public class BuildingPlacing : MonoBehaviour
                     buildingRotation
                 );
                 groundTag = hit.collider.gameObject.tag;
-                //checks if mine is buildable
+                //colors building red if they cannot be build
+                //TODO: Add resource check
                 if (
                     !BuildingIsPlacable()
                 )
