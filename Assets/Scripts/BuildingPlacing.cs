@@ -47,7 +47,7 @@ public class BuildingPlacing : MonoBehaviour
             }
             else
             {
-                buildingRotation = Quaternion.identity;
+                buildingRotation = selectedBuilding.transform.rotation;
                 inBuildMode = true;
                 buildModeActions.Enable();
             }
@@ -84,7 +84,7 @@ public class BuildingPlacing : MonoBehaviour
         //Rotate by 90°
         if (rotateAction.WasPressedThisFrame())
         {
-            previousInstance.transform.Rotate(transform.up, 90f);
+            previousInstance.transform.Rotate(new Vector3(0,1,0), 90f,Space.World);
             buildingRotation = previousInstance.transform.rotation;
         }
 

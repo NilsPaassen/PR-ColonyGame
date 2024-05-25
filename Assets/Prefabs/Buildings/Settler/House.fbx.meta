@@ -7,6 +7,12 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Door
+    second: {fileID: -876546973899608171, guid: dab4f82051e07d74ca5a025df5400f2d,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Glow
     second: {fileID: -876546973899608171, guid: fcd9b690d73265549b1d3f94098246e8,
       type: 3}
@@ -15,6 +21,12 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: StandartMaterial
     second: {fileID: -876546973899608171, guid: 40b2848c1ea1580448b513ad69dce54e,
+      type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window
+    second: {fileID: -876546973899608171, guid: 65308b2e464bfd14ead0b04a9a230ed3,
       type: 3}
   materials:
     materialImportMode: 2
@@ -47,7 +59,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 50
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -102,7 +114,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
