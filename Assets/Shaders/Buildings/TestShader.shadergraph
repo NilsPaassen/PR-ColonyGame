@@ -64,9 +64,6 @@
             "m_Id": "65d730f46b1d4b479a71b0efc4e85191"
         },
         {
-            "m_Id": "dc80a2a9807d455eb4385a632b4048c0"
-        },
-        {
             "m_Id": "d799bc5efc6343d9b4bbafc5302442f0"
         },
         {
@@ -840,10 +837,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -408.0,
-            "y": 283.33331298828127,
-            "width": 209.33331298828126,
-            "height": 328.00006103515627
+            "x": -407.3333740234375,
+            "y": 283.3333435058594,
+            "width": 209.3333282470703,
+            "height": 328.0000305175781
         }
     },
     "m_Slots": [
@@ -1210,29 +1207,6 @@
 }
 
 {
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
-    "m_ObjectId": "c88de7b74cf44a819b29f618ccb99cb4",
-    "m_Id": 0,
-    "m_DisplayName": "Direction",
-    "m_SlotType": 1,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "Direction",
-    "m_StageCapability": 3,
-    "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-    },
-    "m_DefaultValue": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-    },
-    "m_Labels": []
-}
-
-{
     "m_SGVersion": 1,
     "m_Type": "UnityEditor.ShaderGraph.ColorNode",
     "m_ObjectId": "d799bc5efc6343d9b4bbafc5302442f0",
@@ -1308,41 +1282,6 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "VertexDescription.Normal"
-}
-
-{
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.MainLightDirectionNode",
-    "m_ObjectId": "dc80a2a9807d455eb4385a632b4048c0",
-    "m_Group": {
-        "m_Id": ""
-    },
-    "m_Name": "Main Light Direction",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": -954.6666259765625,
-            "y": 246.66665649414063,
-            "width": 161.33331298828126,
-            "height": 78.6666259765625
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "c88de7b74cf44a819b29f618ccb99cb4"
-        }
-    ],
-    "synonyms": [
-        "sun"
-    ],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_DismissedVersion": 0,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    }
 }
 
 {
