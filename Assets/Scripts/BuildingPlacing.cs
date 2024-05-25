@@ -80,9 +80,7 @@ public class BuildingPlacing : MonoBehaviour
                 groundTag = hit.collider.gameObject.tag;
                 //colors building red if they cannot be build
                 //TODO: Add resource check
-                if (
-                    !BuildingIsPlacable()
-                )
+                if (!BuildingIsPlacable())
                 {
                     foreach (
                         MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>()
