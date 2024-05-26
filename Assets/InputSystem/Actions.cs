@@ -28,10 +28,19 @@ public partial class @Actions: IInputActionCollection2, IDisposable
             ""id"": ""151ad4f9-c422-4b61-a19b-af5d780ab18b"",
             ""actions"": [
                 {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""d54ef798-81fc-4890-a64d-31c4b0dc60a4"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Move"",
                     ""type"": ""Value"",
                     ""id"": ""c042b9df-a0e7-4a31-825e-f0e00e378fc9"",
-                    ""expectedControlType"": ""Stick"",
+                    ""expectedControlType"": ""Dpad"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -48,9 +57,31 @@ public partial class @Actions: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
+                    ""name"": """",
+                    ""id"": ""1061c4ac-c05e-45e1-8341-32c00dba6ef6"",
+                    ""path"": ""<Keyboard>/#(B)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Build Mode"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f01befe-0400-4d04-b163-b81039060c8c"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""WASD"",
                     ""id"": ""dd2c6b6b-2506-4b33-85e2-e6a3b06733a4"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=1)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -105,7 +136,7 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Arrow Keys"",
                     ""id"": ""ab2fb55a-349d-4779-b170-08517ccd5cf9"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""2DVector(mode=1)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -156,17 +187,6 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1061c4ac-c05e-45e1-8341-32c00dba6ef6"",
-                    ""path"": ""<Keyboard>/#(B)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Build Mode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -223,6 +243,7 @@ public partial class @Actions: IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_BuildMode = m_Player.FindAction("Build Mode", throwIfNotFound: true);
         // Build Mode
@@ -290,12 +311,14 @@ public partial class @Actions: IInputActionCollection2, IDisposable
     // Player
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
+    private readonly InputAction m_Player_Zoom;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_BuildMode;
     public struct PlayerActions
     {
         private @Actions m_Wrapper;
         public PlayerActions(@Actions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @BuildMode => m_Wrapper.m_Player_BuildMode;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -307,6 +330,9 @@ public partial class @Actions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerActionsCallbackInterfaces.Add(instance);
+            @Zoom.started += instance.OnZoom;
+            @Zoom.performed += instance.OnZoom;
+            @Zoom.canceled += instance.OnZoom;
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
@@ -317,6 +343,9 @@ public partial class @Actions: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IPlayerActions instance)
         {
+            @Zoom.started -= instance.OnZoom;
+            @Zoom.performed -= instance.OnZoom;
+            @Zoom.canceled -= instance.OnZoom;
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
@@ -396,6 +425,7 @@ public partial class @Actions: IInputActionCollection2, IDisposable
     public BuildModeActions @BuildMode => new BuildModeActions(this);
     public interface IPlayerActions
     {
+        void OnZoom(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnBuildMode(InputAction.CallbackContext context);
     }

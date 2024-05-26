@@ -6,10 +6,19 @@
             "id": "151ad4f9-c422-4b61-a19b-af5d780ab18b",
             "actions": [
                 {
+                    "name": "Zoom",
+                    "type": "Value",
+                    "id": "d54ef798-81fc-4890-a64d-31c4b0dc60a4",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Move",
                     "type": "Value",
                     "id": "c042b9df-a0e7-4a31-825e-f0e00e378fc9",
-                    "expectedControlType": "Stick",
+                    "expectedControlType": "Dpad",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -26,9 +35,31 @@
             ],
             "bindings": [
                 {
+                    "name": "",
+                    "id": "1061c4ac-c05e-45e1-8341-32c00dba6ef6",
+                    "path": "<Keyboard>/#(B)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Build Mode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f01befe-0400-4d04-b163-b81039060c8c",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "WASD",
                     "id": "dd2c6b6b-2506-4b33-85e2-e6a3b06733a4",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -83,7 +114,7 @@
                 {
                     "name": "Arrow Keys",
                     "id": "ab2fb55a-349d-4779-b170-08517ccd5cf9",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -134,17 +165,6 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "1061c4ac-c05e-45e1-8341-32c00dba6ef6",
-                    "path": "<Keyboard>/#(B)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Build Mode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
