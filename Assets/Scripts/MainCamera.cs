@@ -33,17 +33,20 @@ public class MainCamera : MonoBehaviour
         // Zoom
         Vector3 forward = transform.forward;
         float zoom = speed * zoomAction.ReadValue<float>();
-        if (zoom < 0) {
+        if (zoom < 0)
+        {
             position += zoom * forward;
         }
         Physics.Raycast(position, forward, out RaycastHit hit);
         float zoomableDistance = Vector3.Distance(position, hit.point) - minimumDistance;
-        while (zoomableDistance < 0) {
+        while (zoomableDistance < 0)
+        {
             position += zoomableDistance * forward;
             Physics.Raycast(position, forward, out hit);
             zoomableDistance = Vector3.Distance(position, hit.point) - minimumDistance;
         }
-        if (zoom > 0) {
+        if (zoom > 0)
+        {
             position += Mathf.Min(zoom, zoomableDistance) * forward;
         }
 
