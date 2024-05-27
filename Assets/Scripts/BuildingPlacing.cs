@@ -58,7 +58,6 @@ public class BuildingPlacing : MonoBehaviour
 
         if (inBuildMode)
         {
-
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //layer 3 == BuildableOn
             if (
@@ -179,6 +178,4 @@ public class BuildingPlacing : MonoBehaviour
         }
         return true;
     }
-
-    
 }
