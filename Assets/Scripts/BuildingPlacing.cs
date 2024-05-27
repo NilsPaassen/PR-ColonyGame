@@ -58,11 +58,11 @@ public class BuildingPlacing : MonoBehaviour
 
         if (inBuildMode)
         {
-            RaycastHit hit;
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             //layer 3 == BuildableOn
             if (
-                Physics.Raycast(ray, out hit, 1000.0f)
+                Physics.Raycast(ray, out RaycastHit hit, 1000.0f)
                 && hit.collider.gameObject.layer == LayerMask.NameToLayer("BuildableOn")
                 && hit.collider.gameObject != previousHit
             )
@@ -124,11 +124,21 @@ public class BuildingPlacing : MonoBehaviour
             {
                 foreach (Material mat in meshRenderer.materials)
                 {
+                    //checks if the material is used in the preview
                     if (mat.HasColor("_previewColor"))
                     {
                         mat.SetColor("_previewColor", Color.black);
                         //SetInt is apparently how you change bools(0=false;1=true)
                         mat.SetInt("_isPreview", 0);
+
+                        //makes mat opaque
+                        mat.SetInt("_SurfaceType", 0);
+                        mat.SetInt("_RenderQueueType", 1);
+                        mat.SetFloat("_AlphaDstBlend", 0f);
+                        mat.SetFloat("_DstBlend", 0f);
+                        mat.SetFloat("_ZTestDepthEqualForOpaque", 3f);
+                        mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
+
                         mat.SetFloat("_alpha", 1);
                     }
                 }
@@ -169,4 +179,6 @@ public class BuildingPlacing : MonoBehaviour
         }
         return true;
     }
+
+    
 }
