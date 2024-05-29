@@ -25,10 +25,10 @@ public class MainCamera : MonoBehaviour
         // Move
         Vector3 position = transform.position;
         float speed = metersPerSecond * Time.deltaTime;
-        Vector3 move = moveAction.ReadValue<Vector2>();
+        Vector2 move = moveAction.ReadValue<Vector2>();
         Vector3 rotatedMove = transform.rotation * new Vector3(move.x, 0, move.y);
         rotatedMove.y = 0;
-        position += speed * rotatedMove.normalized;
+        position += speed * move.magnitude * rotatedMove.normalized;
 
         // Zoom
         Vector3 forward = transform.forward;
