@@ -1,12 +1,13 @@
 using System.ComponentModel;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Composites;
 using UnityEngine.InputSystem.Layouts;
 using UnityEngine.InputSystem.Utilities;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 
 #if UNITY_EDITOR
 [InitializeOnLoad]
