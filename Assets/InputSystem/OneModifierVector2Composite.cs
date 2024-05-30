@@ -8,7 +8,6 @@ using UnityEngine.InputSystem.Utilities;
 using UnityEditor;
 #endif
 
-
 #if UNITY_EDITOR
 [InitializeOnLoad]
 #endif
