@@ -21,9 +21,10 @@ public class ConveyorBelt : MonoBehaviour
     public GameObject CheckForFrontConveyor()
     {
         //the end object should never change what their next object is
-        if (position == 1) {
+        if (position == 1)
+        {
             return nextConveyorBelt;
-         }
+        }
 
         RaycastHit hit;
         Ray ray = new Ray(gameObject.transform.position, gameObject.transform.forward);

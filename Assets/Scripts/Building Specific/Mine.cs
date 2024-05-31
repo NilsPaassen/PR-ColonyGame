@@ -19,9 +19,7 @@ public class Mine : MonoBehaviour
     // Update is called once per frame
     void Update() { }
 
-    public void OnResourceProduced(){
-        
-    }
+    public void OnResourceProduced() { }
 
     public void OnBuild(String groundType)
     {
