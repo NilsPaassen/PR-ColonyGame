@@ -56,7 +56,8 @@ public class MainCamera : MonoBehaviour
         }
         Physics.Raycast(transform.position, transform.forward, out RaycastHit hit);
         float zoomableDistance = Vector3.Distance(transform.position, hit.point) - minimumDistance;
-        if (!Mathf.Approximately(alreadyZoomed, -speed)) {
+        if (!Mathf.Approximately(alreadyZoomed, -speed))
+        {
             while (zoomableDistance < 0)
             {
                 float toZoom = Mathf.Max(zoomableDistance, -speed - alreadyZoomed);
@@ -67,7 +68,8 @@ public class MainCamera : MonoBehaviour
                     break;
                 }
                 Physics.Raycast(transform.position, transform.forward, out hit);
-                zoomableDistance = Vector3.Distance(transform.position, hit.point) - minimumDistance;
+                zoomableDistance =
+                    Vector3.Distance(transform.position, hit.point) - minimumDistance;
             }
         }
         if (zoom > 0 && zoomableDistance > 0)
