@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class ConveyorBelt : MonoBehaviour
 {
-    private GameObject nextConveyorBelt;
+    public GameObject nextConveyorBelt;
     public GameObject[] carriedObjects = new GameObject[3];
     private float speedModifier = 1f;
+
+    //0 == middle; 1 == end; 2 == beginning;
+    public int position = 0;
 
     // Start is called before the first frame update
     void Start() { }
@@ -16,6 +20,11 @@ public class ConveyorBelt : MonoBehaviour
 
     public GameObject CheckForFrontConveyor()
     {
+        //the end object should never change what their next object is
+        if (position == 1) {
+            return nextConveyorBelt;
+         }
+
         RaycastHit hit;
         Ray ray = new Ray(gameObject.transform.position, gameObject.transform.forward);
         Physics.Raycast(ray, out hit, 1f);
