@@ -14,6 +14,8 @@ public class MainCamera : MonoBehaviour
     public int maximumAngle;
     public int minimumDistance;
 
+    private float remainingZoom = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,34 +29,64 @@ public class MainCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Zoom
+        float time = Time.deltaTime;
+        float speed = metersPerSecond * time;
+        float zoom = speed * zoomAction.ReadValue<float>();
+        if (zoom == 0)
+        {
+            zoom = Mathf.MoveTowards(0, remainingZoom, speed);
+            remainingZoom -= zoom;
+        }
+        else
+        {
+            remainingZoom = 0;
+            if (!Mathf.Approximately(zoom, speed) && Mathf.Abs(zoom) > speed)
+            {
+                remainingZoom = zoom;
+                zoom = Mathf.Sign(zoom) * speed;
+                remainingZoom -= zoom;
+            }
+        }
+        float alreadyZoomed = 0;
+        if (zoom < 0)
+        {
+            transform.position += zoom * transform.forward;
+            alreadyZoomed += zoom;
+        }
+        Physics.Raycast(transform.position, transform.forward, out RaycastHit hit);
+        float zoomableDistance = Vector3.Distance(transform.position, hit.point) - minimumDistance;
+        if (!Mathf.Approximately(alreadyZoomed, -speed)) {
+            while (zoomableDistance < 0)
+            {
+                float toZoom = Mathf.Max(zoomableDistance, -speed - alreadyZoomed);
+                transform.position += toZoom * transform.forward;
+                alreadyZoomed += toZoom;
+                if (Mathf.Approximately(alreadyZoomed, -speed))
+                {
+                    break;
+                }
+                Physics.Raycast(transform.position, transform.forward, out hit);
+                zoomableDistance = Vector3.Distance(transform.position, hit.point) - minimumDistance;
+            }
+        }
+        if (zoom > 0 && zoomableDistance > 0)
+        {
+            transform.position += Mathf.Min(zoom, zoomableDistance) * transform.forward;
+            if (Mathf.Approximately(zoomableDistance, zoom) || zoomableDistance < zoom)
+            {
+                remainingZoom = 0;
+            }
+        }
+
         // Move
-        float speed = metersPerSecond * Time.deltaTime;
         Vector2 move = moveAction.ReadValue<Vector2>();
         Vector3 rotatedMove = transform.rotation * new Vector3(move.x, 0, move.y);
         rotatedMove.y = 0;
         transform.position += speed * move.magnitude * rotatedMove.normalized;
 
-        // Zoom
-        float zoom = speed * zoomAction.ReadValue<float>();
-        if (zoom < 0)
-        {
-            transform.position += zoom * transform.forward;
-        }
-        Physics.Raycast(transform.position, transform.forward, out RaycastHit hit);
-        float zoomableDistance = Vector3.Distance(transform.position, hit.point) - minimumDistance;
-        while (zoomableDistance < 0)
-        {
-            transform.position += zoomableDistance * transform.forward;
-            Physics.Raycast(transform.position, transform.forward, out hit);
-            zoomableDistance = Vector3.Distance(transform.position, hit.point) - minimumDistance;
-        }
-        if (zoom > 0)
-        {
-            transform.position += Mathf.Min(zoom, zoomableDistance) * transform.forward;
-        }
-
         // Rotate
-        float degreesSpeed = degreesPerSecond * Time.deltaTime;
+        float degreesSpeed = degreesPerSecond * time;
         Vector2 rotate = rotateAction.ReadValue<Vector2>();
         transform.RotateAround(hit.point, Vector3.down, degreesSpeed * rotate.x);
         float currentAngle = transform.rotation.eulerAngles.x;

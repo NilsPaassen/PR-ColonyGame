@@ -365,9 +365,9 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Mouse"",
                     ""id"": ""2a4c0404-603a-4a47-9a09-4918636870b3"",
-                    ""path"": ""OneModifierVector2"",
+                    ""path"": ""OneModifierVector2(normalize=false,mode=2)"",
                     ""interactions"": """",
-                    ""processors"": ""ScaleVector2(x=2,y=2)"",
+                    ""processors"": ""ScaleVector2(x=0.25,y=0.25)"",
                     ""groups"": """",
                     ""action"": ""Rotate"",
                     ""isComposite"": true,

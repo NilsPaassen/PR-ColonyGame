@@ -3434,8 +3434,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   metersPerSecond: 10
   degreesPerSecond: 45
-  minimumAngle: 23
-  maximumAngle: 68
+  minimumAngle: 15
+  maximumAngle: 75
   minimumDistance: 5
 --- !u!1 &286651574
 GameObject:
