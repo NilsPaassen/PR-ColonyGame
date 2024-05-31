@@ -34,6 +34,10 @@ public class ConveyorBelt : MonoBehaviour
 
     private void TransferCarriedObjecs()
     {
+        if (nextConveyorBelt == null)
+        {
+            CheckForFrontConveyor();
+        }
         if (nextConveyorBelt != null)
         {
             ConveyorBelt next = nextConveyorBelt.GetComponent<ConveyorBelt>();
@@ -43,6 +47,7 @@ public class ConveyorBelt : MonoBehaviour
                 carriedObjects[0] = null;
             }
         }
+
         for (int i = 0; i < carriedObjects.Length - 1; i++)
         {
             if (carriedObjects[i] == null)
