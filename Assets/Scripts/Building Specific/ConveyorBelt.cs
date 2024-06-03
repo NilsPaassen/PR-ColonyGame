@@ -30,12 +30,19 @@ public class ConveyorBelt : MonoBehaviour
         //Debug.DrawRay(transform.position + new Vector3(0, 0.05f, 0), Quaternion.Euler(transform.rotation.eulerAngles) * new Vector3(-1, 0, 0), Color.blue, 3f);
 
         RaycastHit hit;
-        Ray ray = new Ray(transform.position + new Vector3(0, 0.05f, 0), Quaternion.Euler(transform.rotation.eulerAngles) * new Vector3(-1, 0, 0));
+        Ray ray = new Ray(
+            transform.position + new Vector3(0, 0.05f, 0),
+            Quaternion.Euler(transform.rotation.eulerAngles) * new Vector3(-1, 0, 0)
+        );
         Physics.Raycast(ray, out hit, 2f);
 
-        if (!hit.collider.IsUnityNull() && hit.collider.gameObject.layer == LayerMask.NameToLayer("ConveyorBelt") && hit.collider.gameObject.GetComponent<MeshRenderer>().material.GetInt("_isPreview") == 0)
+        if (
+            !hit.collider.IsUnityNull()
+            && hit.collider.gameObject.layer == LayerMask.NameToLayer("ConveyorBelt")
+            && hit.collider.gameObject.GetComponent<MeshRenderer>().material.GetInt("_isPreview")
+                == 0
+        )
         {
-
             return hit.collider.gameObject;
         }
         return null;
