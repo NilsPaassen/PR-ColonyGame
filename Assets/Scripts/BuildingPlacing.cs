@@ -112,6 +112,7 @@ public class BuildingPlacing : MonoBehaviour
         //Checks if preview is currently intersecting by checking if the color has been changed to red by the BuildingSpaceAvailable Script
         if (
             placeAction.WasPressedThisFrame()
+            && previousInstance != null
             && previousInstance.GetComponent<MeshRenderer>().material.GetColor("_previewColor")
                 != new Color(1f, 0.1f, 0.1f)
         )

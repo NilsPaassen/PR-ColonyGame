@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ConveyorBelt : MonoBehaviour
 {
@@ -25,12 +27,15 @@ public class ConveyorBelt : MonoBehaviour
         {
             return nextConveyorBelt;
         }
+        //Debug.DrawRay(transform.position + new Vector3(0, 0.05f, 0), Quaternion.Euler(transform.rotation.eulerAngles) * new Vector3(-1, 0, 0), Color.blue, 3f);
 
         RaycastHit hit;
-        Ray ray = new Ray(gameObject.transform.position, gameObject.transform.forward);
-        Physics.Raycast(ray, out hit, 1f);
-        if (hit.collider && hit.collider.gameObject.layer == LayerMask.NameToLayer("ConveyorBelt"))
+        Ray ray = new Ray(transform.position + new Vector3(0, 0.05f, 0), Quaternion.Euler(transform.rotation.eulerAngles) * new Vector3(-1, 0, 0));
+        Physics.Raycast(ray, out hit, 2f);
+
+        if (!hit.collider.IsUnityNull() && hit.collider.gameObject.layer == LayerMask.NameToLayer("ConveyorBelt") && hit.collider.gameObject.GetComponent<MeshRenderer>().material.GetInt("_isPreview") == 0)
         {
+
             return hit.collider.gameObject;
         }
         return null;
@@ -42,13 +47,13 @@ public class ConveyorBelt : MonoBehaviour
         Invoke("TransferCarriedObjecs", 1f * speedModifier);
     }
 
-    private void TransferCarriedObjecs()
+    void TransferCarriedObjecs()
     {
-        if (nextConveyorBelt == null)
+        if (nextConveyorBelt.IsUnityNull() || nextConveyorBelt == null)
         {
-            CheckForFrontConveyor();
+            nextConveyorBelt = CheckForFrontConveyor();
         }
-        if (nextConveyorBelt != null)
+        else
         {
             ConveyorBelt next = nextConveyorBelt.GetComponent<ConveyorBelt>();
             if (next.carriedObjects[2] == null)
@@ -66,6 +71,6 @@ public class ConveyorBelt : MonoBehaviour
                 carriedObjects[i + 1] = null;
             }
         }
-        Invoke("TransferCarriedObjects", 1f * speedModifier);
+        Invoke("TransferCarriedObjecs", 1f * speedModifier);
     }
 }
