@@ -35,7 +35,8 @@ public class Mine : MonoBehaviour
         outputConveyor.carriedObjects[2] = producedResource;
     }
 
-    public void ProduceResource(){
+    public void ProduceResource()
+    {
         if (outputConveyor.carriedObjects[2] == null)
         {
             OutputResource();
@@ -45,13 +46,13 @@ public class Mine : MonoBehaviour
             resourcesStored++;
         }
 
-        Invoke("ProduceResource",1f);
+        Invoke("ProduceResource", 1f);
     }
 
     public void OnBuild(String groundType)
     {
         resourceType = groundType;
         outputConveyor = outputConveyorObject.GetComponent<ConveyorBelt>();
-        Invoke("ProduceResource",1f);
+        Invoke("ProduceResource", 1f);
     }
 }
