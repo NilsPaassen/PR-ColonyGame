@@ -156,7 +156,11 @@ public class BuildingPlacing : MonoBehaviour
             {
                 mine.OnBuild(groundTag);
             }
-            if (previousInstance.TryGetComponent<SmallManufacture>(out SmallManufacture smallManufacture))
+            if (
+                previousInstance.TryGetComponent<SmallManufacture>(
+                    out SmallManufacture smallManufacture
+                )
+            )
             {
                 smallManufacture.OnBuild();
             }
