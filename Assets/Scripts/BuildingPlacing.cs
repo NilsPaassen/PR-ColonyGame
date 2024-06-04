@@ -156,6 +156,10 @@ public class BuildingPlacing : MonoBehaviour
             {
                 mine.OnBuild(groundTag);
             }
+            if (previousInstance.TryGetComponent<SmallManufacture>(out SmallManufacture smallManufacture))
+            {
+                smallManufacture.OnBuild();
+            }
 
             //makes previousInstance permament by removing the refrenced GameObject from the variable, thus it no longer gets deleted
             previousInstance = null;

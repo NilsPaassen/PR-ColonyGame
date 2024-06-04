@@ -30,7 +30,7 @@ public class Mine : MonoBehaviour
 
     void OutputResource()
     {
-        GameObject producedResource = new GameObject();
+        GameObject producedResource = new GameObject(resourceType);
         producedResource.tag = resourceType;
         outputConveyor.carriedObjects[2] = producedResource;
     }
@@ -54,5 +54,6 @@ public class Mine : MonoBehaviour
         resourceType = groundType;
         outputConveyor = outputConveyorObject.GetComponent<ConveyorBelt>();
         Invoke("ProduceResource", 1f);
+        outputConveyor.OnBuild();
     }
 }
