@@ -42,7 +42,11 @@ public class SmallManufacture : MonoBehaviour
                 Destroy(input.carriedObjects[0]);
                 storedResources++;
             }
-            if (!productionIsInvoked && storedResources >= requiredResources && storedProduct > storedProductLimit)
+            if (
+                !productionIsInvoked
+                && storedResources >= requiredResources
+                && storedProduct > storedProductLimit
+            )
             {
                 productionIsInvoked = true;
                 Invoke("ProduceResource", 1f);
@@ -70,7 +74,7 @@ public class SmallManufacture : MonoBehaviour
         {
             case "Cable":
                 return pArrivingResource == "CopperBar";
-            
+
             case "CopperBar":
                 return pArrivingResource == "CopperOre";
 
