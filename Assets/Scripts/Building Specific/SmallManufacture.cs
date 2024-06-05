@@ -12,7 +12,7 @@ public class SmallManufacture : MonoBehaviour
     private ConveyorBelt input;
     private ConveyorBelt output;
 
-    private String selectedProduct = "Cable";
+    public String selectedProduct = "Cable";
 
     private int storedResources = 0;
     private int storedResourcesLimit = 100;
@@ -42,7 +42,7 @@ public class SmallManufacture : MonoBehaviour
                 Destroy(input.carriedObjects[0]);
                 storedResources++;
             }
-            if (!productionIsInvoked && storedResources >= requiredResources)
+            if (!productionIsInvoked && storedResources >= requiredResources && storedProduct > storedProductLimit)
             {
                 productionIsInvoked = true;
                 Invoke("ProduceResource", 1f);
@@ -70,6 +70,9 @@ public class SmallManufacture : MonoBehaviour
         {
             case "Cable":
                 return pArrivingResource == "CopperBar";
+            
+            case "CopperBar":
+                return pArrivingResource == "CopperOre";
 
             default:
                 return false;

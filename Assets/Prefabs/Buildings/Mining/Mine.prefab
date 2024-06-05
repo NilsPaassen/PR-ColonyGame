@@ -102,6 +102,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1432062975953849830}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 448113229638dc141a39cd477d1dd27c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1907803890234157639}
   m_SourcePrefab: {fileID: 100100000, guid: 448113229638dc141a39cd477d1dd27c, type: 3}
 --- !u!4 &3495050653564417661 stripped
 Transform:
@@ -197,7 +201,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outputConveyorObject: {fileID: 2900598385012064329}
+  resourceLimit: 100
   resourceType: 
+--- !u!114 &1907803890234157639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4308601935415766215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6917f00a7e176c044ab1d129367d67fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7702053965737728798
 PrefabInstance:
   m_ObjectHideFlags: 0

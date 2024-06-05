@@ -188,6 +188,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4848383321280171328}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9fd8e3615ee1ed14f8de78dc080e3355,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5674779506229450188}
   m_SourcePrefab: {fileID: 100100000, guid: 9fd8e3615ee1ed14f8de78dc080e3355, type: 3}
 --- !u!4 &67162766615243055 stripped
 Transform:
@@ -215,6 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputCBObject: {fileID: 643695877224912055}
   outputCBObject: {fileID: 7570475840391047668}
+  selectedProduct: Cable
   producedResourceAmount: 5
   requiredResources: 1
 --- !u!54 &434309603006586384
@@ -286,6 +291,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.8996124, y: 0.46119422, z: 0.4783187}
   m_Center: {x: 1.7726994, y: -0.9903492, z: -1.5689754}
+--- !u!114 &5674779506229450188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839161029832979349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6917f00a7e176c044ab1d129367d67fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3147017989488358051
 PrefabInstance:
   m_ObjectHideFlags: 0
