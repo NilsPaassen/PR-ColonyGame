@@ -805,10 +805,10 @@
     "m_Guid": {
         "m_GuidSerialized": "8a179e92-b1aa-4ca5-abe7-7906c291bd55"
     },
-    "m_Name": "glowColor",
+    "m_Name": "secGlowColor",
     "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "glowColor",
-    "m_DefaultReferenceName": "_glowColor",
+    "m_RefNameGeneratedByDisplayName": "secGlowColor",
+    "m_DefaultReferenceName": "_secGlowColor",
     "m_OverrideReferenceName": "",
     "m_GeneratePropertyBlock": true,
     "m_UseCustomSlotLabel": false,
@@ -1168,7 +1168,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "ea1df622f6d542fc94295c21a5a72b70",
     "m_Id": 0,
-    "m_DisplayName": "glowColor",
+    "m_DisplayName": "secGlowColor",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

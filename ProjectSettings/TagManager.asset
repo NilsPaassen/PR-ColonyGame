@@ -9,6 +9,8 @@ TagManager:
   - IronOre
   - Cole
   - Mine
+  - CopperBar
+  - IronBar
   layers:
   - Default
   - TransparentFX
