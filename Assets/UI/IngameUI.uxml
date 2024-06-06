@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:VisualElement class="navbar">
+        <ui:Label text="Coal: x432" class="resource-label" />
+        <ui:Label text="Gold: x342" class="resource-label" />
+        <ui:Label text="Iron: x45" class="resource-label" />
+        <ui:VisualElement class="progress-container">
+            <ui:Label text="Moral" class="progress-label" />
+            <ui:ProgressBar value="50" class="progress-bar"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

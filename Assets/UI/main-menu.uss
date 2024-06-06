@@ -1,0 +1,28 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2E3A87; /* Dunkelblauer Pastellhintergrund */
+    padding: 10px;
+}
+
+.resource-label {
+    margin: 0 15px;
+    color: #D3D3D3; /* Sehr heller Grauton */
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.progress-label {
+    color: #D3D3D3; /* Sehr heller Grauton */
+    margin-bottom: 5px;
+}
+
+.progress-bar {
+    width: 100px;
+}
