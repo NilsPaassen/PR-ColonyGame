@@ -19,7 +19,8 @@ public class NavbarController : MonoBehaviour
         uiDocument.rootVisualElement.Add(root);
 
         // Bilder hinzufügen
-        string[] iconPaths = {
+        string[] iconPaths =
+        {
             "Assets/UI/Icons/CoalOre.webp",
             "Assets/UI/Icons/IronOre.webp",
             "Assets/UI/Icons/GoldOre.webp",
