@@ -13,7 +13,6 @@
 
 .progress-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
     margin: 0 15px;
 }
