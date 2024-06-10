@@ -8005,6 +8005,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1141308916}
   - component: {fileID: 1141308917}
+  - component: {fileID: 1141308918}
+  - component: {fileID: 1141308919}
   m_Layer: 0
   m_Name: WorldEmpty
   m_TagString: Untagged
@@ -8169,6 +8171,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedBuilding: {fileID: 4308601935415766215, guid: 3f0b0f7a1b59bb745b854e9859807d58,
     type: 3}
+--- !u!114 &1141308918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141308915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af5761994ff1b54595b0674e1bbf00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jsonFile: {fileID: 4900000, guid: 3d2ca225de5b1444bbd705b49528baa2, type: 3}
+--- !u!114 &1141308919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141308915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6347f7769a5982a428aeefca36462638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jsonFile: {fileID: 4900000, guid: 69dec50e7ac1d9c4188068a4259b382c, type: 3}
 --- !u!1 &1158018916
 GameObject:
   m_ObjectHideFlags: 0
