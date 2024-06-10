@@ -1,0 +1,36 @@
+{
+  "smelterRecipes": [
+    {
+      "name": "glas",
+      "input": { "resource": "sand", "amount": 10 },
+      "output": { "resource": "glas", "amount": 1 }
+    },
+    {
+      "name": "ironBar",
+      "input": { "resource": "ironOre", "amount": 1 },
+      "output": { "resource": "ironBar", "amount": 1 }
+    },
+    {
+      "name": "copperBar",
+      "input": { "resource": "copperOre", "amount": 1 },
+      "output": { "resource": "copperBar", "amount": 1 }
+    }
+  ],
+  "singleInputFactory": [
+    {
+      "name": "cable",
+      "input": { "resource": "copperBar", "amount": 1 },
+      "output": { "resource": "cable", "amount": 5 }
+    }
+  ],
+  "dualInputFactory": [
+    {
+      "name": "stellBar",
+      "input": [
+        { "resource": "ironBar", "amount": 1 },
+        { "resource": "coal", "amount": 1 }
+      ],
+      "output": { "resource": "steelBar", "amount": 1 }
+    }
+  ]
+}

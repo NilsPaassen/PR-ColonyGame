@@ -1,0 +1,85 @@
+{
+  "logisticBuildings": [
+    {
+      "name": "conveyorBelt",
+      "cost": [
+        { "resourceName": "ironBar", "amount": 1 },
+        { "resourceName": "cable", "amount": 1 }
+      ]
+    },
+    {
+      "name": "pipeline",
+      "cost": [{ "resourceName": "steelBar", "amount": 1 }]
+    },
+    {
+      "name": "storage",
+      "cost": [{ "resourceName": "steelBar", "amount": 6 }]
+    }
+  ],
+  "resourceGatheringBuildings": [
+    {
+      "name": "pump",
+      "cost": [
+        { "resourceName": "steelBar", "amount": 2 },
+        { "resourceName": "glas", "amount": 1 },
+        { "resourceName": "cable", "amount": 10 }
+      ],
+      "worker": 1,
+      "energyConsumed": 1
+    },
+    {
+      "name": "mine",
+      "cost": [
+        { "resourceName": "ironBar", "amount": 2 },
+        { "resourceName": "cable", "amount": 10 }
+      ],
+      "worker": 2
+    },
+    {
+      "name": "excavation",
+      "cost": [
+        { "resourceName": "ironBar", "amount": 1 },
+        { "resourceName": "cable", "amount": 3 }
+      ],
+      "worker": 2
+    }
+  ],
+  "energyBuildings": [
+    {
+      "name": "solarpanel",
+      "cost": [
+        { "resourceName": "ironBar", "amount": 1 },
+        { "resourceName": "glas", "amount": 4 }
+      ],
+      "energyProduced": 1
+    },
+    {
+      "name": "coalPowerPlant",
+      "cost": [
+        { "resourceName": "steelBar", "amount": 8 },
+        { "resourceName": "cable", "amount": 30 }
+      ],
+      "worker": 2,
+      "energyProduced": 1
+    },
+    {
+      "name": "energyRepeater",
+      "cost": [
+        { "resourceName": "steelBar", "amount": 1 },
+        { "resourceName": "cable", "amount": 15 }
+      ]
+    }
+  ],
+  "settlerBuildings": [
+    {
+      "name": "coalPowerPlant",
+      "cost": [
+        { "resourceName": "steelBar", "amount": 3 },
+        { "resourceName": "cable", "amount": 5 },
+        { "resourceName": "glas", "amount": 2 }
+      ],
+      "livingSpace": 5,
+      "energyConsumed": 2
+    }
+  ]
+}

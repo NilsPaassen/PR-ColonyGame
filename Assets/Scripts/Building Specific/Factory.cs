@@ -24,7 +24,7 @@ public class Factory : Building
     private int storedResourcesLimit = 100;
     private int storedSecondaryResourcesLimit = 100;
     private int storedProduct = 0;
-    private int storedProductLimit = 100;
+    public int storedProductLimit = 100;
 
     public int producedResourceAmount = 5;
     public int requiredResources = 1;
