@@ -8167,7 +8167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38f638978e2e4ba48a4fee42fb693115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedBuilding: {fileID: 839161029832979349, guid: 8108c44b39b4c3649b504129441a159c,
+  selectedBuilding: {fileID: 4308601935415766215, guid: 3f0b0f7a1b59bb745b854e9859807d58,
     type: 3}
 --- !u!1 &1158018916
 GameObject:
@@ -8607,7 +8607,7 @@ GameObject:
   - component: {fileID: 1292340602}
   m_Layer: 3
   m_Name: WorldPlain (66)
-  m_TagString: Untagged
+  m_TagString: CopperOre
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9629,7 +9629,7 @@ GameObject:
   - component: {fileID: 1433735252}
   m_Layer: 3
   m_Name: WorldPlain (42)
-  m_TagString: Untagged
+  m_TagString: IronOre
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11754,7 +11754,7 @@ GameObject:
   - component: {fileID: 1755113116}
   m_Layer: 3
   m_Name: WorldPlain (64)
-  m_TagString: Untagged
+  m_TagString: CopperOre
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12602,7 +12602,7 @@ GameObject:
   - component: {fileID: 1924775874}
   m_Layer: 3
   m_Name: WorldPlain (23)
-  m_TagString: Untagged
+  m_TagString: CopperOre
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

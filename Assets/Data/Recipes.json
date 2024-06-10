@@ -1,36 +1,36 @@
 {
   "smelterRecipes": [
     {
-      "name": "glas",
-      "input": { "resource": "sand", "amount": 10 },
-      "output": { "resource": "glas", "amount": 1 }
+      "name": "Glas",
+      "input": [{ "resourceName": "Sand", "amount": 10 }],
+      "output": { "resourceName": "Glas", "amount": 1 }
     },
     {
-      "name": "ironBar",
-      "input": { "resource": "ironOre", "amount": 1 },
-      "output": { "resource": "ironBar", "amount": 1 }
+      "name": "IronBar",
+      "input": [{ "resourceName": "IronOre", "amount": 1 }],
+      "output": { "resourceName": "IronBar", "amount": 1 }
     },
     {
-      "name": "copperBar",
-      "input": { "resource": "copperOre", "amount": 1 },
-      "output": { "resource": "copperBar", "amount": 1 }
+      "name": "CopperBar",
+      "input": [{ "resourceName": "CopperOre", "amount": 1 }],
+      "output": { "resourceName": "CopperBar", "amount": 1 }
     }
   ],
-  "singleInputFactory": [
+  "singleInputFactoryRecipes": [
     {
-      "name": "cable",
-      "input": { "resource": "copperBar", "amount": 1 },
-      "output": { "resource": "cable", "amount": 5 }
+      "name": "Cable",
+      "input": [{ "resourceName": "CopperBar", "amount": 1 }],
+      "output": { "resourceName": "Cable", "amount": 5 }
     }
   ],
-  "dualInputFactory": [
+  "dualInputFactoryRecipes": [
     {
-      "name": "stellBar",
+      "name": "SteelBar",
       "input": [
-        { "resource": "ironBar", "amount": 1 },
-        { "resource": "coal", "amount": 1 }
+        { "resourceName": "IronBar", "amount": 1 },
+        { "resourceName": "Coal", "amount": 1 }
       ],
-      "output": { "resource": "steelBar", "amount": 1 }
+      "output": { "resourceName": "SteelBar", "amount": 1 }
     }
   ]
 }

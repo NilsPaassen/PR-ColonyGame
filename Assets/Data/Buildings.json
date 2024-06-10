@@ -1,82 +1,82 @@
 {
   "logisticBuildings": [
     {
-      "name": "conveyorBelt",
+      "name": "ConveyorBelt",
       "cost": [
-        { "resourceName": "ironBar", "amount": 1 },
-        { "resourceName": "cable", "amount": 1 }
+        { "resourceName": "IronBar", "amount": 1 },
+        { "resourceName": "Cable", "amount": 1 }
       ]
     },
     {
-      "name": "pipeline",
-      "cost": [{ "resourceName": "steelBar", "amount": 1 }]
+      "name": "Pipeline",
+      "cost": [{ "resourceName": "SteelBar", "amount": 1 }]
     },
     {
-      "name": "storage",
-      "cost": [{ "resourceName": "steelBar", "amount": 6 }]
+      "name": "Storage",
+      "cost": [{ "resourceName": "SteelBar", "amount": 6 }]
     }
   ],
   "resourceGatheringBuildings": [
     {
-      "name": "pump",
+      "name": "Pump",
       "cost": [
-        { "resourceName": "steelBar", "amount": 2 },
-        { "resourceName": "glas", "amount": 1 },
-        { "resourceName": "cable", "amount": 10 }
+        { "resourceName": "SteelBar", "amount": 2 },
+        { "resourceName": "Glas", "amount": 1 },
+        { "resourceName": "Cable", "amount": 10 }
       ],
       "worker": 1,
       "energyConsumed": 1
     },
     {
-      "name": "mine",
+      "name": "Mine",
       "cost": [
-        { "resourceName": "ironBar", "amount": 2 },
-        { "resourceName": "cable", "amount": 10 }
+        { "resourceName": "IronBar", "amount": 2 },
+        { "resourceName": "Cable", "amount": 10 }
       ],
       "worker": 2
     },
     {
-      "name": "excavation",
+      "name": "Excavation",
       "cost": [
-        { "resourceName": "ironBar", "amount": 1 },
-        { "resourceName": "cable", "amount": 3 }
+        { "resourceName": "IronBar", "amount": 1 },
+        { "resourceName": "Cable", "amount": 3 }
       ],
       "worker": 2
     }
   ],
   "energyBuildings": [
     {
-      "name": "solarpanel",
+      "name": "Solarpanel",
       "cost": [
-        { "resourceName": "ironBar", "amount": 1 },
-        { "resourceName": "glas", "amount": 4 }
+        { "resourceName": "IronBar", "amount": 1 },
+        { "resourceName": "Glas", "amount": 4 }
       ],
       "energyProduced": 1
     },
     {
-      "name": "coalPowerPlant",
+      "name": "CoalPowerPlant",
       "cost": [
-        { "resourceName": "steelBar", "amount": 8 },
-        { "resourceName": "cable", "amount": 30 }
+        { "resourceName": "SteelBar", "amount": 8 },
+        { "resourceName": "Cable", "amount": 30 }
       ],
       "worker": 2,
       "energyProduced": 1
     },
     {
-      "name": "energyRepeater",
+      "name": "EnergyRepeater",
       "cost": [
-        { "resourceName": "steelBar", "amount": 1 },
-        { "resourceName": "cable", "amount": 15 }
+        { "resourceName": "SteelBar", "amount": 1 },
+        { "resourceName": "Cable", "amount": 15 }
       ]
     }
   ],
   "settlerBuildings": [
     {
-      "name": "coalPowerPlant",
+      "name": "SmallHut",
       "cost": [
-        { "resourceName": "steelBar", "amount": 3 },
-        { "resourceName": "cable", "amount": 5 },
-        { "resourceName": "glas", "amount": 2 }
+        { "resourceName": "SteelBar", "amount": 3 },
+        { "resourceName": "Cable", "amount": 5 },
+        { "resourceName": "Glas", "amount": 2 }
       ],
       "livingSpace": 5,
       "energyConsumed": 2

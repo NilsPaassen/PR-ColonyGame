@@ -11,6 +11,7 @@ TagManager:
   - Mine
   - CopperBar
   - IronBar
+  - SteelBar
   layers:
   - Default
   - TransparentFX

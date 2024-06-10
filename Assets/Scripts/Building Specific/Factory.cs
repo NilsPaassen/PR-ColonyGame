@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
 
 public class Factory : Building
@@ -15,10 +17,10 @@ public class Factory : Building
     private ConveyorBelt secondaryInput;
     private ConveyorBelt output;
 
-    public String selectedProduct = "Cable";
+    public String selectedProduct;
 
-    public String resource = "CopperBar";
-    public String secondaryResource = "CopperBar";
+    public String resource;
+    public String secondaryResource;
     private int storedResources = 0;
     private int storedSecondaryResources = 0;
     private int storedResourcesLimit = 100;
@@ -85,6 +87,10 @@ public class Factory : Building
         storedSecondaryResources = -requiredSecondaryResources;
         storedProduct = +producedResourceAmount;
         productionIsInvoked = false;
+    }
+
+    public void SelectRecipe(){
+        
     }
 
     public void OnBuild()
