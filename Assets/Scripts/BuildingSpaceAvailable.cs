@@ -18,7 +18,6 @@ public class BuildingSpaceAvailable : MonoBehaviour
                 {
                     mat.SetColor("_previewColor", new Color(1f, 0.1f, 0.1f));
                 }
-                
             }
         }
     }

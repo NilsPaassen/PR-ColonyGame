@@ -6,6 +6,5 @@ using UnityEngine;
 
 public abstract class Building : MonoBehaviour
 {
-   public void OnBuild([Optional]String arg){}
-
+    public void OnBuild([Optional] String arg) { }
 }

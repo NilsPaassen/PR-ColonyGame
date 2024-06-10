@@ -173,10 +173,10 @@ public class BuildingPlacing : MonoBehaviour
             previousInstance.GetComponent<Building>().OnBuild();
         }
 
-
         //makes previousInstance permament by removing the refrenced GameObject from the variable, thus it no longer gets deleted
         previousInstance = null;
     }
+
     private bool BuildingIsPlacable()
     {
         //cannot build on Water
