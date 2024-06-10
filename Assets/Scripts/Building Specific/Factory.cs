@@ -50,10 +50,10 @@ public class Factory : Building
                 Destroy(input.carriedObjects[0]);
                 storedResources++;
                 if (
-                storedSecondaryResources < storedSecondaryResourcesLimit
-                && secondaryInput.carriedObjects[0] != null
-                && secondaryInput.carriedObjects[0].CompareTag(secondaryResource)
-            )
+                    storedSecondaryResources < storedSecondaryResourcesLimit
+                    && secondaryInput.carriedObjects[0] != null
+                    && secondaryInput.carriedObjects[0].CompareTag(secondaryResource)
+                )
                 {
                     Destroy(input.carriedObjects[0]);
                     storedResources++;
@@ -81,9 +81,9 @@ public class Factory : Building
 
     public void ProduceResource()
     {
-        storedResources =- requiredResources;
-        storedSecondaryResources =- requiredSecondaryResources;
-        storedProduct =+ producedResourceAmount;
+        storedResources = -requiredResources;
+        storedSecondaryResources = -requiredSecondaryResources;
+        storedProduct = +producedResourceAmount;
         productionIsInvoked = false;
     }
 
