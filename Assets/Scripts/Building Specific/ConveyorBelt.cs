@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ConveyorBelt : MonoBehaviour
+public class ConveyorBelt : Building
 {
     public GameObject nextConveyorBelt;
     public GameObject[] carriedObjects = new GameObject[3];

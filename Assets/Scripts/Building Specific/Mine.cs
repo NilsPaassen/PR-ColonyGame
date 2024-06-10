@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using VSCodeEditor;
 
-public class Mine : MonoBehaviour
+public class Mine : Building
 {
     public GameObject outputConveyorObject;
     private ConveyorBelt outputConveyor;

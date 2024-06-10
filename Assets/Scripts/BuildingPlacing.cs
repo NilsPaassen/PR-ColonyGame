@@ -43,58 +43,12 @@ public class BuildingPlacing : MonoBehaviour
         //When B is pressed go to build mode
         if (buildModeAction.WasPressedThisFrame())
         {
-            if (inBuildMode)
-            {
-                buildModeActions.Disable();
-                inBuildMode = false;
-            }
-            else
-            {
-                buildingRotation = selectedBuilding.transform.rotation;
-                inBuildMode = true;
-                buildModeActions.Enable();
-            }
+            changeBuildMode();
         }
 
         if (inBuildMode)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            //layer 3 == BuildableOn
-            if (
-                Physics.Raycast(ray, out RaycastHit hit, 1000.0f)
-                && hit.collider.gameObject.layer == LayerMask.NameToLayer("BuildableOn")
-                && hit.collider.gameObject != previousHit
-            )
-            {
-                //if a preview Instance exists it gets destroyed
-                if (previousInstance != null)
-                {
-                    Destroy(previousInstance, 0);
-                }
-                previousInstance = Instantiate(
-                    selectedBuilding,
-                    hit.transform.position + selectedBuilding.transform.position,
-                    buildingRotation
-                );
-                groundTag = hit.collider.gameObject.tag;
-                //colors building red if they cannot be build
-                //TODO: Add resource check
-                if (!BuildingIsPlacable())
-                {
-                    foreach (
-                        MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>()
-                    )
-                    {
-                        foreach (Material mat in meshRenderer.materials)
-                        {
-                            if (mat.HasColor("_previewColor"))
-                            {
-                                mat.SetColor("_previewColor", new Color(1f, 0.1f, 0.1f));
-                            }
-                        }
-                    }
-                }
-            }
+            PlacePreview();
         }
         else if (previousInstance != null)
         {
@@ -117,59 +71,112 @@ public class BuildingPlacing : MonoBehaviour
                 != new Color(1f, 0.1f, 0.1f)
         )
         {
-            //Sets the Material Parameters in all Children of the placed Building
-            foreach (
-                MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>()
-            )
-            {
-                foreach (Material mat in meshRenderer.materials)
-                {
-                    //checks if the material is used in the preview
-                    if (mat.HasColor("_previewColor"))
-                    {
-                        mat.SetColor("_previewColor", Color.black);
-                        //SetInt is apparently how you change bools(0=false;1=true)
-                        mat.SetInt("_isPreview", 0);
-
-                        //makes mat opaque
-                        mat.SetInt("_SurfaceType", 0);
-                        mat.SetInt("_RenderQueueType", 1);
-                        mat.SetFloat("_AlphaDstBlend", 0f);
-                        mat.SetFloat("_DstBlend", 0f);
-                        mat.SetFloat("_ZTestDepthEqualForOpaque", 3f);
-                        mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
-
-                        mat.SetFloat("_alpha", 1);
-                    }
-                }
-            }
-
-            //sets Is Trigger to true so that the building can now interact with the Building preview
-            previousInstance.GetComponent<Collider>().isTrigger = true;
-
-            //tries to activate the building specific scripts
-            if (previousInstance.TryGetComponent<ConveyorBelt>(out ConveyorBelt conveyorBelt))
-            {
-                conveyorBelt.OnBuild();
-            }
-            if (previousInstance.TryGetComponent<Mine>(out Mine mine))
-            {
-                mine.OnBuild(groundTag);
-            }
-            if (
-                previousInstance.TryGetComponent<SmallManufacture>(
-                    out SmallManufacture smallManufacture
-                )
-            )
-            {
-                smallManufacture.OnBuild();
-            }
-
-            //makes previousInstance permament by removing the refrenced GameObject from the variable, thus it no longer gets deleted
-            previousInstance = null;
+            PlaceBuilding();
         }
     }
 
+    private void changeBuildMode()
+    {
+        if (inBuildMode)
+        {
+            buildModeActions.Disable();
+            inBuildMode = false;
+        }
+        else
+        {
+            buildingRotation = selectedBuilding.transform.rotation;
+            inBuildMode = true;
+            buildModeActions.Enable();
+        }
+    }
+
+    private void PlacePreview()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //layer 3 == BuildableOn
+        if (
+            Physics.Raycast(ray, out RaycastHit hit, 1000.0f)
+            && hit.collider.gameObject.layer == LayerMask.NameToLayer("BuildableOn")
+            && hit.collider.gameObject != previousHit
+        )
+        {
+            //if a preview Instance exists it gets destroyed
+            if (previousInstance != null)
+            {
+                Destroy(previousInstance, 0);
+            }
+            previousInstance = Instantiate(
+                selectedBuilding,
+                hit.transform.position + selectedBuilding.transform.position,
+                buildingRotation
+            );
+            groundTag = hit.collider.gameObject.tag;
+            //colors building red if they cannot be build
+            //TODO: Add resource check
+            if (!BuildingIsPlacable())
+            {
+                foreach (
+                    MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>()
+                )
+                {
+                    foreach (Material mat in meshRenderer.materials)
+                    {
+                        if (mat.HasColor("_previewColor"))
+                        {
+                            mat.SetColor("_previewColor", new Color(1f, 0.1f, 0.1f));
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void PlaceBuilding()
+    {
+        //Sets the Material Parameters in all Children of the placed Building
+        foreach (
+            MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>()
+        )
+        {
+            foreach (Material mat in meshRenderer.materials)
+            {
+                //checks if the material is used in the preview
+                if (mat.HasColor("_previewColor"))
+                {
+                    mat.SetColor("_previewColor", Color.black);
+                    //SetInt is apparently how you change bools(0=false;1=true)
+                    mat.SetInt("_isPreview", 0);
+
+                    //makes mat opaque
+                    mat.SetInt("_SurfaceType", 0);
+                    mat.SetInt("_RenderQueueType", 1);
+                    mat.SetFloat("_AlphaDstBlend", 0f);
+                    mat.SetFloat("_DstBlend", 0f);
+                    mat.SetFloat("_ZTestDepthEqualForOpaque", 3f);
+                    mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Geometry;
+
+                    mat.SetFloat("_alpha", 1);
+                }
+            }
+        }
+
+        //sets Is Trigger to true so that the building can now interact with the Building preview
+        previousInstance.GetComponent<Collider>().isTrigger = true;
+
+        //tries to activate the building specific scripts
+        if (previousInstance.CompareTag("Mine"))
+        {
+            previousInstance.GetComponent<Building>().OnBuild(groundTag);
+        }
+        else
+        {
+            previousInstance.GetComponent<Building>().OnBuild();
+        }
+
+
+        //makes previousInstance permament by removing the refrenced GameObject from the variable, thus it no longer gets deleted
+        previousInstance = null;
+    }
     private bool BuildingIsPlacable()
     {
         //cannot build on Water
