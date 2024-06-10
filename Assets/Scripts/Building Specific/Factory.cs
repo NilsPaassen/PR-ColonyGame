@@ -2,25 +2,33 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class SmallManufacture : Building
+public class Factory : Building
 {
     public GameObject inputCBObject;
+    public GameObject secondaryInputCBObject;
     public GameObject outputCBObject;
 
     private ConveyorBelt input;
+    private ConveyorBelt secondaryInput;
     private ConveyorBelt output;
 
     public String selectedProduct = "Cable";
 
+    public String resource = "CopperBar";
+    public String secondaryResource = "CopperBar";
     private int storedResources = 0;
+    private int storedSecondaryResources = 0;
     private int storedResourcesLimit = 100;
+    private int storedSecondaryResourcesLimit = 100;
     private int storedProduct = 0;
     private int storedProductLimit = 100;
 
     public int producedResourceAmount = 5;
     public int requiredResources = 1;
+    public int requiredSecondaryResources = 0;
 
     private bool productionIsInvoked = false;
     private bool isBuild = false;
@@ -36,15 +44,25 @@ public class SmallManufacture : Building
             if (
                 storedResources < storedResourcesLimit
                 && input.carriedObjects[0] != null
-                && CheckIfResourceIsRequired(input.carriedObjects[0].tag)
+                && input.carriedObjects[0].CompareTag(resource)
             )
             {
                 Destroy(input.carriedObjects[0]);
                 storedResources++;
+                if (
+                storedSecondaryResources < storedSecondaryResourcesLimit
+                && secondaryInput.carriedObjects[0] != null
+                && secondaryInput.carriedObjects[0].CompareTag(secondaryResource)
+            )
+                {
+                    Destroy(input.carriedObjects[0]);
+                    storedResources++;
+                }
             }
             if (
                 !productionIsInvoked
                 && storedResources >= requiredResources
+                && storedSecondaryResources >= requiredSecondaryResources
                 && storedProduct > storedProductLimit
             )
             {
@@ -63,29 +81,21 @@ public class SmallManufacture : Building
 
     public void ProduceResource()
     {
-        storedResources = storedResources - requiredResources;
-        storedProduct = storedProduct + producedResourceAmount;
+        storedResources =- requiredResources;
+        storedSecondaryResources =- requiredSecondaryResources;
+        storedProduct =+ producedResourceAmount;
         productionIsInvoked = false;
-    }
-
-    private bool CheckIfResourceIsRequired(String pArrivingResource)
-    {
-        switch (selectedProduct)
-        {
-            case "Cable":
-                return pArrivingResource == "CopperBar";
-
-            case "CopperBar":
-                return pArrivingResource == "CopperOre";
-
-            default:
-                return false;
-        }
     }
 
     public void OnBuild()
     {
         input = inputCBObject.GetComponent<ConveyorBelt>();
+        if (!secondaryInputCBObject.IsUnityNull())
+        {
+            secondaryInput = secondaryInputCBObject.GetComponent<ConveyorBelt>();
+            secondaryInput.OnBuild();
+        }
+
         output = outputCBObject.GetComponent<ConveyorBelt>();
         isBuild = true;
         input.OnBuild();
