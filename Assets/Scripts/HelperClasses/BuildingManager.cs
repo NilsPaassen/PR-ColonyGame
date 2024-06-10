@@ -26,13 +26,14 @@ public class BuildingManager : MonoBehaviour
     {
         return GetBuilding(buildingName, allBuildings.resourceGatheringBuildings);
     }
+
     JSONStructures.Building GetEnergyBuilding(string buildingName)
     {
         return GetBuilding(buildingName, allBuildings.energyBuildings);
     }
+
     JSONStructures.Building GetSettelerBuilding(string buildingName)
     {
         return GetBuilding(buildingName, allBuildings.settlerBuildings);
     }
-
 }

@@ -20,6 +20,7 @@ public class JSONStructures : MonoBehaviour
         public string resourceName;
         public int amount;
     }
+
     [Serializable]
     public class Recipe
     {
@@ -27,7 +28,6 @@ public class JSONStructures : MonoBehaviour
         public Resource[] input;
         public Resource output;
     }
-
 
     [Serializable]
     public class AllBuildings
@@ -45,5 +45,4 @@ public class JSONStructures : MonoBehaviour
         public Building[] singleInputFactoryRecipes;
         public Building[] dualInputFactoryRecipes;
     }
-
 }

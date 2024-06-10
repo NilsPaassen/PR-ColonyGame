@@ -89,9 +89,7 @@ public class Factory : Building
         productionIsInvoked = false;
     }
 
-    public void SelectRecipe(){
-        
-    }
+    public void SelectRecipe() { }
 
     public void OnBuild()
     {
