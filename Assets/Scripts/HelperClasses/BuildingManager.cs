@@ -14,25 +14,25 @@ public class BuildingManager : MonoBehaviour
 
     JSONStructures.Building GetBuilding(string buildingName, JSONStructures.Building[] subArray)
     {
-        return System.Array.Find<JSONStructures.Building>(subArray, b => b.name == buildingName);
+        return System.Array.Find(subArray, b => b.name == buildingName);
     }
 
-    JSONStructures.Building GetLogisticBuilding(string buildingName)
+    public JSONStructures.Building GetLogisticBuilding(string buildingName)
     {
         return GetBuilding(buildingName, allBuildings.logisticBuildings);
     }
 
-    JSONStructures.Building GetResourceGatheringBuilding(string buildingName)
+    public JSONStructures.Building GetResourceGatheringBuilding(string buildingName)
     {
         return GetBuilding(buildingName, allBuildings.resourceGatheringBuildings);
     }
 
-    JSONStructures.Building GetEnergyBuilding(string buildingName)
+    public JSONStructures.Building GetEnergyBuilding(string buildingName)
     {
         return GetBuilding(buildingName, allBuildings.energyBuildings);
     }
 
-    JSONStructures.Building GetSettelerBuilding(string buildingName)
+    public JSONStructures.Building GetSettelerBuilding(string buildingName)
     {
         return GetBuilding(buildingName, allBuildings.settlerBuildings);
     }

@@ -42,7 +42,7 @@ public class JSONStructures : MonoBehaviour
     public class AllRecipes
     {
         public Recipe[] smelterRecipe;
-        public Building[] singleInputFactoryRecipes;
-        public Building[] dualInputFactoryRecipes;
+        public Recipe[] singleInputFactoryRecipes;
+        public Recipe[] dualInputFactoryRecipes;
     }
 }
