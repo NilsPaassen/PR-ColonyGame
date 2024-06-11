@@ -10,9 +10,8 @@ public class RecipeManager : MonoBehaviour
     {
         // Parse the JSON file
         allRecipes = JsonUtility.FromJson<JSONStructures.AllRecipes>(jsonFile.text);
-
-
     }
+
     JSONStructures.Recipe GetRecipe(string recipeName, JSONStructures.Recipe[] subArray)
     {
         return System.Array.Find(subArray, b => b.name == recipeName);
