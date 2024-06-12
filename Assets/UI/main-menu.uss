@@ -2,13 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #2E3A87; /* Dunkelblauer Pastellhintergrund */
+    background-color: rgb(46, 58, 135);
     padding: 10px;
 }
 
 .resource-label {
     margin: 0 15px;
-    color: #D3D3D3; /* Sehr heller Grauton */
+    color: rgb(211, 211, 211);
 }
 
 .progress-container {
@@ -18,10 +18,27 @@
 }
 
 .progress-label {
-    color: #D3D3D3; /* Sehr heller Grauton */
+    color: rgb(211, 211, 211);
     margin-bottom: 5px;
 }
 
 .progress-bar {
     width: 100px;
+}
+.unity-progress-bar__progress{
+    background-color: rgb(17, 51, 248);
+
+}
+.unity-progress-bar__background{
+    background-color: rgb(14, 26, 94);
+}
+
+.unity-progress-bar__title-container{
+    border: none;
+}
+
+
+.text {
+    background-color: rgba(255, 255, 255, 0);
+    color: rgb(255, 255, 255);
 }
