@@ -7,7 +7,7 @@ using UnityEditor;
 #if UNITY_EDITOR
 [InitializeOnLoad]
 #endif
-public class MouseDeltaProcessor : InputProcessor<Vector2>
+public class MouseProcessor : InputProcessor<Vector2>
 {
     [Tooltip("Value when mouse is moved across the whole screen.")]
     public float wholeScreenValue;
@@ -25,7 +25,7 @@ public class MouseDeltaProcessor : InputProcessor<Vector2>
     }
 
 #if UNITY_EDITOR
-    static MouseDeltaProcessor()
+    static MouseProcessor()
     {
         Initialize();
     }
@@ -34,6 +34,6 @@ public class MouseDeltaProcessor : InputProcessor<Vector2>
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     static void Initialize()
     {
-        InputSystem.RegisterProcessor<MouseDeltaProcessor>();
+        InputSystem.RegisterProcessor<MouseProcessor>();
     }
 }
