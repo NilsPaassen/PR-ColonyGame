@@ -78,7 +78,10 @@ public class Factory : Building
                 outputProduct.tag = selectedProduct;
                 outputConveyor.carriedObjects[2] = Instantiate(
             outputProduct,
-            outputConveyor.transform.position - Quaternion.Euler(outputConveyor.transform.rotation.eulerAngles) * new Vector3(-0.35f, 0, 0) + new Vector3(0, .2f, 0),
+                    outputConveyor.transform.position
+                        - Quaternion.Euler(outputConveyor.transform.rotation.eulerAngles)
+                            * new Vector3(-0.35f, 0, 0)
+                        + new Vector3(0, .2f, 0),
             Quaternion.identity
         );
                 storedProduct--;
@@ -102,6 +105,7 @@ public class Factory : Building
         producedAmount = recipe.output.amount;
     }
 
+<<<<<<< HEAD
     public void SelectDualInputRecipe(String recipeName) {
         JSONStructures.Recipe recipe = GameObject.FindGameObjectWithTag("WorldController").GetComponent<RecipeManager>().GetDualInputFactoryRecipe(recipeName);
         requiredResources = recipe.input[0].amount;
@@ -121,6 +125,9 @@ public class Factory : Building
     }
 
     override public void OnBuild()
+=======
+    public override void OnBuild()
+>>>>>>> 0c2ca7368b9fe202930e91d4fa436e4280dfac45
     {
         Debug.Log("OnBuild executed");
         input = inputCBObject.GetComponent<ConveyorBelt>();

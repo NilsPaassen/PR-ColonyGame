@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class Building : MonoBehaviour
 {
-   virtual public void OnBuild() { }
-   virtual public void OnBuild(String param) { }
+    public virtual void OnBuild() { }
+
+    public virtual void OnBuild(String param) { }
 }
