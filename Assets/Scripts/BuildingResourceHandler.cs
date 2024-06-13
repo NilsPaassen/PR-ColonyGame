@@ -6,8 +6,7 @@ using UnityEngine;
 
 public class BuildingResourceHandler : MonoBehaviour
 {
-    public Dictionary<string,int> storage = new Dictionary<string,int>();
-    void Start()
-    {
-    }
+    public Dictionary<string, int> storage = new Dictionary<string, int>();
+
+    void Start() { }
 }

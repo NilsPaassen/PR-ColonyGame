@@ -10,7 +10,6 @@ public class Container : Building
     private ConveyorBelt outputConveyor;
     private ConveyorBelt inputConveyor;
 
-
     public string resourceType;
     public int storedLimit = 100;
     public int storedAmount = 0;
@@ -25,8 +24,12 @@ public class Container : Building
         isBuild = true;
         outputConveyor = outputObj.GetComponent<ConveyorBelt>();
         inputConveyor = inputObj.GetComponent<ConveyorBelt>();
-        buildingResourceHandler = GameObject.FindWithTag("WorldController").GetComponent<BuildingResourceHandler>().storage;
+        buildingResourceHandler = GameObject
+            .FindWithTag("WorldController")
+            .GetComponent<BuildingResourceHandler>()
+            .storage;
     }
+
     void OutputResource()
     {
         buildingResourceHandler[resourceType]--;
@@ -66,8 +69,7 @@ public class Container : Building
                     resourceType = inputConveyor.carriedObjects[0].tag;
                     TakeInResource();
                 }
-                else
-                if (inputConveyor.carriedObjects[0].CompareTag(resourceType))
+                else if (inputConveyor.carriedObjects[0].CompareTag(resourceType))
                 {
                     TakeInResource();
                 }
