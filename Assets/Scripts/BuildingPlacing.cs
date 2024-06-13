@@ -5,6 +5,7 @@ using static Actions;
 
 public class BuildingPlacing : MonoBehaviour
 {
+
     private InputAction buildModeAction;
     private BuildModeActions buildModeActions;
     private InputAction cursorAction;
