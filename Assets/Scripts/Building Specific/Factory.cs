@@ -77,10 +77,13 @@ public class Factory : Building
                 GameObject outputProduct = new GameObject(selectedProduct);
                 outputProduct.tag = selectedProduct;
                 outputConveyor.carriedObjects[2] = Instantiate(
-            outputProduct,
-            outputConveyor.transform.position - Quaternion.Euler(outputConveyor.transform.rotation.eulerAngles) * new Vector3(-0.35f, 0, 0) + new Vector3(0, .2f, 0),
-            Quaternion.identity
-        );
+                    outputProduct,
+                    outputConveyor.transform.position
+                        - Quaternion.Euler(outputConveyor.transform.rotation.eulerAngles)
+                            * new Vector3(-0.35f, 0, 0)
+                        + new Vector3(0, .2f, 0),
+                    Quaternion.identity
+                );
                 storedProduct--;
             }
         }
@@ -96,8 +99,7 @@ public class Factory : Building
 
     public void SelectRecipe() { }
 
-
-    override public void OnBuild()
+    public override void OnBuild()
     {
         Debug.Log("OnBuild executed");
         input = inputCBObject.GetComponent<ConveyorBelt>();

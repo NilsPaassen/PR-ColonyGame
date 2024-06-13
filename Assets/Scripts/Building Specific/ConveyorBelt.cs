@@ -47,7 +47,7 @@ public class ConveyorBelt : Building
         return null;
     }
 
-    override public void OnBuild()
+    public override void OnBuild()
     {
         nextConveyorBelt = CheckForFrontConveyor();
         Invoke("TransferCarriedObjecs", 1f * speedModifier);
@@ -66,17 +66,26 @@ public class ConveyorBelt : Building
             if (next.carriedObjects[2] == null && carriedObjects[0] != null)
             {
                 next.carriedObjects[2] = carriedObjects[0];
-                carriedObjects[0].transform.position = nextConveyorBelt.transform.position - Quaternion.Euler(nextConveyorBelt.transform.rotation.eulerAngles) * new Vector3(-0.35f, 0, 0) + new Vector3(0,.2f,0);
+                carriedObjects[0].transform.position =
+                    nextConveyorBelt.transform.position
+                    - Quaternion.Euler(nextConveyorBelt.transform.rotation.eulerAngles)
+                        * new Vector3(-0.35f, 0, 0)
+                    + new Vector3(0, .2f, 0);
                 carriedObjects[0] = null;
             }
         }
         //transports in the conveyorbelt
         for (int i = 0; i < carriedObjects.Length - 1; i++)
         {
-            if (carriedObjects[i] == null && carriedObjects[i+1] != null)
+            if (carriedObjects[i] == null && carriedObjects[i + 1] != null)
             {
                 carriedObjects[i] = carriedObjects[i + 1];
-                carriedObjects[i+1].transform.position = transform.position + Quaternion.Euler(transform.rotation.eulerAngles) * new Vector3(-0.35f, 0, 0) * (1-i) + new Vector3(0,.2f,0);
+                carriedObjects[i + 1].transform.position =
+                    transform.position
+                    + Quaternion.Euler(transform.rotation.eulerAngles)
+                        * new Vector3(-0.35f, 0, 0)
+                        * (1 - i)
+                    + new Vector3(0, .2f, 0);
                 carriedObjects[i + 1] = null;
             }
         }

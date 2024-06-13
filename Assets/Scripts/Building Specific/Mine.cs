@@ -19,6 +19,7 @@ public class Mine : Building
     public GameObject barModel;
 
     public String resourceType;
+
     // Update is called once per frame
     void Update()
     {
@@ -34,7 +35,10 @@ public class Mine : Building
         producedResource.tag = resourceType;
         outputConveyor.carriedObjects[2] = Instantiate(
             producedResource,
-            outputConveyor.transform.position - Quaternion.Euler(outputConveyor.transform.rotation.eulerAngles) * new Vector3(-0.35f, 0, 0) + new Vector3(0,.2f,0),
+            outputConveyor.transform.position
+                - Quaternion.Euler(outputConveyor.transform.rotation.eulerAngles)
+                    * new Vector3(-0.35f, 0, 0)
+                + new Vector3(0, .2f, 0),
             Quaternion.identity
         );
     }
@@ -53,7 +57,7 @@ public class Mine : Building
         Invoke("ProduceResource", 1f);
     }
 
-    override public void OnBuild(String groundType)
+    public override void OnBuild(String groundType)
     {
         resourceType = groundType;
         outputConveyor = outputConveyorObject.GetComponent<ConveyorBelt>();
