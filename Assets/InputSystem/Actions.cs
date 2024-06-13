@@ -88,7 +88,7 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""1D Axis"",
+                    ""name"": ""Page Up/Down"",
                     ""id"": ""84600837-f225-48ec-b5f6-c6325874d1df"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -121,7 +121,7 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""1D Axis"",
+                    ""name"": ""+-"",
                     ""id"": ""b293732c-7bf4-40cd-8fdb-d0df2698c206"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -154,7 +154,7 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""1D Axis"",
+                    ""name"": ""Numpad +-"",
                     ""id"": ""673268da-f22f-4013-bc6d-c17cbf75d67e"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
@@ -655,6 +655,15 @@ public partial class @Actions: IInputActionCollection2, IDisposable
             ""id"": ""11bcd613-3af2-42ff-80b4-af2811878114"",
             ""actions"": [
                 {
+                    ""name"": ""Cursor"",
+                    ""type"": ""Value"",
+                    ""id"": ""f3063794-c3f5-4d4a-ac84-49f820e48948"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Rotate"",
                     ""type"": ""Button"",
                     ""id"": ""f01fee13-f65f-4942-9a86-223e7df2e7db"",
@@ -676,12 +685,12 @@ public partial class @Actions: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""ef68a01b-cfe9-44e1-9317-ffe4fcac3861"",
-                    ""path"": ""<Keyboard>/#(R)"",
+                    ""id"": ""a7aa5400-81da-4ed7-8fe6-ab8e443f62fb"",
+                    ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Rotate"",
+                    ""action"": ""Cursor"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -693,6 +702,17 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Place"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ef68a01b-cfe9-44e1-9317-ffe4fcac3861"",
+                    ""path"": ""<Keyboard>/#(R)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -709,6 +729,7 @@ public partial class @Actions: IInputActionCollection2, IDisposable
         m_Player_BuildMode = m_Player.FindAction("Build Mode", throwIfNotFound: true);
         // Build Mode
         m_BuildMode = asset.FindActionMap("Build Mode", throwIfNotFound: true);
+        m_BuildMode_Cursor = m_BuildMode.FindAction("Cursor", throwIfNotFound: true);
         m_BuildMode_Rotate = m_BuildMode.FindAction("Rotate", throwIfNotFound: true);
         m_BuildMode_Place = m_BuildMode.FindAction("Place", throwIfNotFound: true);
     }
@@ -842,12 +863,14 @@ public partial class @Actions: IInputActionCollection2, IDisposable
     // Build Mode
     private readonly InputActionMap m_BuildMode;
     private List<IBuildModeActions> m_BuildModeActionsCallbackInterfaces = new List<IBuildModeActions>();
+    private readonly InputAction m_BuildMode_Cursor;
     private readonly InputAction m_BuildMode_Rotate;
     private readonly InputAction m_BuildMode_Place;
     public struct BuildModeActions
     {
         private @Actions m_Wrapper;
         public BuildModeActions(@Actions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Cursor => m_Wrapper.m_BuildMode_Cursor;
         public InputAction @Rotate => m_Wrapper.m_BuildMode_Rotate;
         public InputAction @Place => m_Wrapper.m_BuildMode_Place;
         public InputActionMap Get() { return m_Wrapper.m_BuildMode; }
@@ -859,6 +882,9 @@ public partial class @Actions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_BuildModeActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_BuildModeActionsCallbackInterfaces.Add(instance);
+            @Cursor.started += instance.OnCursor;
+            @Cursor.performed += instance.OnCursor;
+            @Cursor.canceled += instance.OnCursor;
             @Rotate.started += instance.OnRotate;
             @Rotate.performed += instance.OnRotate;
             @Rotate.canceled += instance.OnRotate;
@@ -869,6 +895,9 @@ public partial class @Actions: IInputActionCollection2, IDisposable
 
         private void UnregisterCallbacks(IBuildModeActions instance)
         {
+            @Cursor.started -= instance.OnCursor;
+            @Cursor.performed -= instance.OnCursor;
+            @Cursor.canceled -= instance.OnCursor;
             @Rotate.started -= instance.OnRotate;
             @Rotate.performed -= instance.OnRotate;
             @Rotate.canceled -= instance.OnRotate;
@@ -901,6 +930,7 @@ public partial class @Actions: IInputActionCollection2, IDisposable
     }
     public interface IBuildModeActions
     {
+        void OnCursor(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnPlace(InputAction.CallbackContext context);
     }

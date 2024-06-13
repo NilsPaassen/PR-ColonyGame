@@ -7,6 +7,7 @@ public class BuildingPlacing : MonoBehaviour
 {
     private InputAction buildModeAction;
     private BuildModeActions buildModeActions;
+    private InputAction cursorAction;
     private InputAction rotateAction;
     private InputAction placeAction;
 
@@ -33,6 +34,7 @@ public class BuildingPlacing : MonoBehaviour
         playerActions.Enable();
         buildModeAction = playerActions.BuildMode;
         buildModeActions = actions.BuildMode;
+        cursorAction = buildModeActions.Cursor;
         rotateAction = buildModeActions.Rotate;
         placeAction = buildModeActions.Place;
     }
@@ -92,7 +94,7 @@ public class BuildingPlacing : MonoBehaviour
 
     private void PlacePreview()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(cursorAction.ReadValue<Vector2>());
         //layer 3 == BuildableOn
         if (
             Physics.Raycast(ray, out RaycastHit hit, 1000.0f)
