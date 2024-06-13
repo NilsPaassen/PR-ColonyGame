@@ -104,8 +104,6 @@ public class Factory : Building
         selectedProduct = recipe.output.resourceName;
         producedAmount = recipe.output.amount;
     }
-
-<<<<<<< HEAD
     public void SelectDualInputRecipe(String recipeName) {
         JSONStructures.Recipe recipe = GameObject.FindGameObjectWithTag("WorldController").GetComponent<RecipeManager>().GetDualInputFactoryRecipe(recipeName);
         requiredResources = recipe.input[0].amount;
@@ -123,11 +121,7 @@ public class Factory : Building
         selectedProduct = recipe.output.resourceName;
         producedAmount = recipe.output.amount;
     }
-
-    override public void OnBuild()
-=======
     public override void OnBuild()
->>>>>>> 0c2ca7368b9fe202930e91d4fa436e4280dfac45
     {
         Debug.Log("OnBuild executed");
         input = inputCBObject.GetComponent<ConveyorBelt>();
