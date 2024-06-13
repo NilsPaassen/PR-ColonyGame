@@ -77,13 +77,13 @@ public class Factory : Building
                 GameObject outputProduct = new GameObject(selectedProduct);
                 outputProduct.tag = selectedProduct;
                 outputConveyor.carriedObjects[2] = Instantiate(
-            outputProduct,
+                    outputProduct,
                     outputConveyor.transform.position
                         - Quaternion.Euler(outputConveyor.transform.rotation.eulerAngles)
                             * new Vector3(-0.35f, 0, 0)
                         + new Vector3(0, .2f, 0),
-            Quaternion.identity
-        );
+                    Quaternion.identity
+                );
                 storedProduct--;
             }
         }
