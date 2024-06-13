@@ -12,6 +12,7 @@ public class BuildingPlacing : MonoBehaviour
     private InputAction placeAction;
 
     private bool inBuildMode = false;
+    private bool buildModePaused = false;
 
     //Cube placeholder until real building possible
     public GameObject selectedBuilding;
@@ -48,7 +49,7 @@ public class BuildingPlacing : MonoBehaviour
             changeBuildMode();
         }
 
-        if (inBuildMode)
+        if (inBuildMode && !buildModePaused)
         {
             PlacePreview();
         }
@@ -77,6 +78,27 @@ public class BuildingPlacing : MonoBehaviour
         }
     }
 
+    public void enableBuildMode()
+    {
+        buildingRotation = selectedBuilding.transform.rotation;
+        inBuildMode = true;
+    }
+
+    public void pauseBuildMode()
+    {
+        buildModeActions.Disable();
+        buildModePaused = true;
+    }
+
+    public void resumeBuildMode()
+    {
+        buildModePaused = false;
+        if (inBuildMode)
+        {
+            buildModeActions.Enable();
+        }
+    }
+
     private void changeBuildMode()
     {
         if (inBuildMode)
@@ -86,9 +108,11 @@ public class BuildingPlacing : MonoBehaviour
         }
         else
         {
-            buildingRotation = selectedBuilding.transform.rotation;
-            inBuildMode = true;
-            buildModeActions.Enable();
+            enableBuildMode();
+            if (!buildModePaused)
+            {
+                buildModeActions.Enable();
+            }
         }
     }
 
