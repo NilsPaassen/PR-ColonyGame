@@ -1,6 +1,6 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
