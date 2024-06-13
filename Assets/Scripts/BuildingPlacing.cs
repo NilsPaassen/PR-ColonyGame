@@ -187,7 +187,10 @@ public class BuildingPlacing : MonoBehaviour
         }
 
         //sets Is Trigger to true so that the building can now interact with the Building preview
-        previousInstance.GetComponent<Collider>().isTrigger = true;
+        foreach (Collider collider in previousInstance.GetComponents<Collider>())
+        {
+            collider.isTrigger = true;
+        }
 
         //tries to activate the building specific scripts
         if (previousInstance.CompareTag("Mine"))
@@ -196,7 +199,7 @@ public class BuildingPlacing : MonoBehaviour
         }
         else
         {
-            previousInstance.GetComponent<Building>()?.OnBuild();
+            previousInstance.GetComponent<Building>().OnBuild();
         }
 
         //makes previousInstance permament by removing the refrenced GameObject from the variable, thus it no longer gets deleted

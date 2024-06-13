@@ -7,12 +7,12 @@ TagManager:
   - Water
   - CopperOre
   - IronOre
-  - Cole
   - Mine
   - CopperBar
   - IronBar
   - SteelBar
   - WorldController
+  - Coal
   layers:
   - Default
   - TransparentFX
