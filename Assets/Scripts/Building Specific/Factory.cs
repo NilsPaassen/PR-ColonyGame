@@ -9,6 +9,8 @@ using UnityEngine;
 
 public class Factory : Building
 {
+
+    public String factoryType = "small";
     public GameObject inputCBObject;
     public GameObject secondaryInputCBObject;
     public GameObject outputCBObject;
@@ -29,15 +31,13 @@ public class Factory : Building
     private int storedProduct = 0;
     public int storedProductLimit = 100;
 
-    public int producedResourceAmount = 5;
+    public int producedAmount = 5;
     public int requiredResources = 1;
     public int requiredSecondaryResources = 0;
 
     private bool productionIsInvoked = false;
     private bool isBuild = false;
 
-    // Start is called before the first frame update
-    void Start() { }
 
     // Update is called once per frame
     void Update()
@@ -90,12 +90,35 @@ public class Factory : Building
     {
         storedResources = -requiredResources;
         storedSecondaryResources = -requiredSecondaryResources;
-        storedProduct = +producedResourceAmount;
+        storedProduct = +producedAmount;
         productionIsInvoked = false;
     }
 
-    public void SelectRecipe() { }
+    public void SelectSmelterRecipe(String recipeName) {
+        JSONStructures.Recipe recipe = GameObject.FindGameObjectWithTag("WorldController").GetComponent<RecipeManager>().GetSmelterRecipe(recipeName);
+        requiredResources = recipe.input[0].amount;
+        resource = recipe.input[0].resourceName;
+        selectedProduct = recipe.output.resourceName;
+        producedAmount = recipe.output.amount;
+    }
 
+    public void SelectDualInputRecipe(String recipeName) {
+        JSONStructures.Recipe recipe = GameObject.FindGameObjectWithTag("WorldController").GetComponent<RecipeManager>().GetDualInputFactoryRecipe(recipeName);
+        requiredResources = recipe.input[0].amount;
+        resource = recipe.input[0].resourceName;
+        requiredSecondaryResources = recipe.input[1].amount;
+        secondaryResource = recipe.input[1].resourceName;
+        selectedProduct = recipe.output.resourceName;
+        producedAmount = recipe.output.amount;
+    }
+
+    public void SelectSingleInputRecipe(String recipeName) {
+        JSONStructures.Recipe recipe = GameObject.FindGameObjectWithTag("WorldController").GetComponent<RecipeManager>().GetSingleInputFactoryRecipe(recipeName);
+        requiredResources = recipe.input[0].amount;
+        resource = recipe.input[0].resourceName;
+        selectedProduct = recipe.output.resourceName;
+        producedAmount = recipe.output.amount;
+    }
 
     override public void OnBuild()
     {
