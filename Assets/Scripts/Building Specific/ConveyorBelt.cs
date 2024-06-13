@@ -14,12 +14,6 @@ public class ConveyorBelt : Building
     //0 == middle; 1 == end; 2 == beginning;
     public int position = 0;
 
-    // Start is called before the first frame update
-    void Start() { }
-
-    // Update is called once per frame
-    void Update() { }
-
     public GameObject CheckForFrontConveyor()
     {
         //the end object should never change what their next object is
@@ -53,7 +47,7 @@ public class ConveyorBelt : Building
         return null;
     }
 
-    public void OnBuild()
+    override public void OnBuild()
     {
         nextConveyorBelt = CheckForFrontConveyor();
         Invoke("TransferCarriedObjecs", 1f * speedModifier);
@@ -61,25 +55,28 @@ public class ConveyorBelt : Building
 
     void TransferCarriedObjecs()
     {
-        if (nextConveyorBelt.IsUnityNull() || nextConveyorBelt == null)
+        if (nextConveyorBelt == null)
         {
             nextConveyorBelt = CheckForFrontConveyor();
         }
         else
         {
+            //gives to the next object
             ConveyorBelt next = nextConveyorBelt.GetComponent<ConveyorBelt>();
-            if (next.carriedObjects[2] == null)
+            if (next.carriedObjects[2] == null && carriedObjects[0] != null)
             {
                 next.carriedObjects[2] = carriedObjects[0];
+                carriedObjects[0].transform.position = nextConveyorBelt.transform.position - Quaternion.Euler(nextConveyorBelt.transform.rotation.eulerAngles) * new Vector3(-0.35f, 0, 0) + new Vector3(0,.2f,0);
                 carriedObjects[0] = null;
             }
         }
-
+        //transports in the conveyorbelt
         for (int i = 0; i < carriedObjects.Length - 1; i++)
         {
-            if (carriedObjects[i] == null)
+            if (carriedObjects[i] == null && carriedObjects[i+1] != null)
             {
                 carriedObjects[i] = carriedObjects[i + 1];
+                carriedObjects[i+1].transform.position = transform.position + Quaternion.Euler(transform.rotation.eulerAngles) * new Vector3(-0.35f, 0, 0) * (1-i) + new Vector3(0,.2f,0);
                 carriedObjects[i + 1] = null;
             }
         }

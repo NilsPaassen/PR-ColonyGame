@@ -15,9 +15,10 @@ public class Factory : Building
 
     private ConveyorBelt input;
     private ConveyorBelt secondaryInput;
-    private ConveyorBelt output;
+    private ConveyorBelt outputConveyor;
 
     public String selectedProduct;
+    public GameObject outputProductModel;
 
     public String resource;
     public String secondaryResource;
@@ -71,11 +72,15 @@ public class Factory : Building
                 productionIsInvoked = true;
                 Invoke("ProduceResource", 1f);
             }
-            if (storedProduct > 0 && output.carriedObjects[2] == null)
+            if (storedProduct > 0 && outputConveyor.carriedObjects[2] == null)
             {
                 GameObject outputProduct = new GameObject(selectedProduct);
                 outputProduct.tag = selectedProduct;
-                output.carriedObjects[2] = outputProduct;
+                outputConveyor.carriedObjects[2] = Instantiate(
+            outputProduct,
+            outputConveyor.transform.position - Quaternion.Euler(outputConveyor.transform.rotation.eulerAngles) * new Vector3(-0.35f, 0, 0) + new Vector3(0, .2f, 0),
+            Quaternion.identity
+        );
                 storedProduct--;
             }
         }
@@ -91,8 +96,10 @@ public class Factory : Building
 
     public void SelectRecipe() { }
 
-    public void OnBuild()
+
+    override public void OnBuild()
     {
+        Debug.Log("OnBuild executed");
         input = inputCBObject.GetComponent<ConveyorBelt>();
         if (!secondaryInputCBObject.IsUnityNull())
         {
@@ -100,9 +107,9 @@ public class Factory : Building
             secondaryInput.OnBuild();
         }
 
-        output = outputCBObject.GetComponent<ConveyorBelt>();
+        outputConveyor = outputCBObject.GetComponent<ConveyorBelt>();
         isBuild = true;
         input.OnBuild();
-        output.OnBuild();
+        outputConveyor.OnBuild();
     }
 }

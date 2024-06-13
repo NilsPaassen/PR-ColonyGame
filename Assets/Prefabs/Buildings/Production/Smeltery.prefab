@@ -341,10 +341,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputCBObject: {fileID: 3823269784285023562}
+  secondaryInputCBObject: {fileID: 0}
   outputCBObject: {fileID: 1548320170327426695}
   selectedProduct: CopperBar
+  outputProductModel: {fileID: 5381639898744295563, guid: 9ca5d36e357b5e944977ffea23847ef3,
+    type: 3}
+  resource: 
+  secondaryResource: 
+  storedProductLimit: 100
   producedResourceAmount: 1
   requiredResources: 1
+  requiredSecondaryResources: 0
 --- !u!114 &-3066879500449200787
 MonoBehaviour:
   m_ObjectHideFlags: 0

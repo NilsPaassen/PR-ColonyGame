@@ -305,6 +305,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outputConveyorObject: {fileID: 2900598385012064329}
   resourceLimit: 100
+  barModel: {fileID: 5381639898744295563, guid: 9ca5d36e357b5e944977ffea23847ef3,
+    type: 3}
   resourceType: 
 --- !u!114 &1907803890234157639
 MonoBehaviour:

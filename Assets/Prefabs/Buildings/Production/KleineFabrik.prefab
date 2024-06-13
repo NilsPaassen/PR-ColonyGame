@@ -218,10 +218,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputCBObject: {fileID: 643695877224912055}
+  secondaryInputCBObject: {fileID: 0}
   outputCBObject: {fileID: 7570475840391047668}
   selectedProduct: Cable
+  outputProductModel: {fileID: 5381639898744295563, guid: 9ca5d36e357b5e944977ffea23847ef3,
+    type: 3}
+  resource: 
+  secondaryResource: 
+  storedProductLimit: 100
   producedResourceAmount: 5
   requiredResources: 1
+  requiredSecondaryResources: 0
 --- !u!54 &434309603006586384
 Rigidbody:
   m_ObjectHideFlags: 0

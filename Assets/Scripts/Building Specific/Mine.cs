@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using UnityEngine.Rendering;
 using VSCodeEditor;
 
 public class Mine : Building
@@ -14,11 +16,9 @@ public class Mine : Building
 
     public int resourceLimit = 100;
 
+    public GameObject barModel;
+
     public String resourceType;
-
-    // Start is called before the first frame update
-    void Start() { }
-
     // Update is called once per frame
     void Update()
     {
@@ -30,9 +30,13 @@ public class Mine : Building
 
     void OutputResource()
     {
-        GameObject producedResource = new GameObject(resourceType);
+        GameObject producedResource = barModel;
         producedResource.tag = resourceType;
-        outputConveyor.carriedObjects[2] = producedResource;
+        outputConveyor.carriedObjects[2] = Instantiate(
+            producedResource,
+            outputConveyor.transform.position - Quaternion.Euler(outputConveyor.transform.rotation.eulerAngles) * new Vector3(-0.35f, 0, 0) + new Vector3(0,.2f,0),
+            Quaternion.identity
+        );
     }
 
     public void ProduceResource()
@@ -49,7 +53,7 @@ public class Mine : Building
         Invoke("ProduceResource", 1f);
     }
 
-    public void OnBuild(String groundType)
+    override public void OnBuild(String groundType)
     {
         resourceType = groundType;
         outputConveyor = outputConveyorObject.GetComponent<ConveyorBelt>();
