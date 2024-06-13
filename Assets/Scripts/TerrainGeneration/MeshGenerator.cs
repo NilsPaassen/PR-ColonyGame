@@ -13,6 +13,7 @@ public class MeshGenerator : MonoBehaviour
 
     public int xSize = 20;
     public int zSize = 20;
+
     void Start()
     {
         mesh = new Mesh();
@@ -26,6 +27,7 @@ public class MeshGenerator : MonoBehaviour
     {
         UpdateMesh();
     }
+
     void CreateShape()
     {
         vertices = new Vector3[(xSize + 1) * (zSize + 1)];
@@ -39,7 +41,8 @@ public class MeshGenerator : MonoBehaviour
             }
         }
         triangles = new int[xSize * zSize * 6];
-        int tris = 0, vert = 0;
+        int tris = 0,
+            vert = 0;
         triangles[tris + 0] = vert + 0;
         triangles[tris + 1] = vert + xSize + 1;
         triangles[tris + 2] = vert + 1;
@@ -50,19 +53,12 @@ public class MeshGenerator : MonoBehaviour
         {
             for (int x = 0; x < xSize; x++)
             {
-
-
-
                 tris += 6;
                 vert++;
             }
 
             vert++;
         }
-
-
-
-
     }
 
     void UpdateMesh()
