@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8faad05e71c5c6841abf14c4cfe4a48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  factoryType: singleinput
   inputCBObject: {fileID: 643695877224912055}
   secondaryInputCBObject: {fileID: 0}
   outputCBObject: {fileID: 7570475840391047668}
@@ -226,7 +227,7 @@ MonoBehaviour:
   resource: 
   secondaryResource: 
   storedProductLimit: 100
-  producedResourceAmount: 5
+  producedAmount: 5
   requiredResources: 1
   requiredSecondaryResources: 0
 --- !u!54 &434309603006586384

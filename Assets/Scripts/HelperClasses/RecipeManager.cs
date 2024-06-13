@@ -22,12 +22,12 @@ public class RecipeManager : MonoBehaviour
         return GetRecipe(recipeName, allRecipes.smelterRecipe);
     }
 
-    public JSONStructures.Recipe GetSingleInputFactoryRecipesRecipe(string recipeName)
+    public JSONStructures.Recipe GetSingleInputFactoryRecipe(string recipeName)
     {
         return GetRecipe(recipeName, allRecipes.singleInputFactoryRecipes);
     }
 
-    public JSONStructures.Recipe GetDualInputFactoryRecipesRecipe(string recipeName)
+    public JSONStructures.Recipe GetDualInputFactoryRecipe(string recipeName)
     {
         return GetRecipe(recipeName, allRecipes.dualInputFactoryRecipes);
     }
