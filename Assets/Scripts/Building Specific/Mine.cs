@@ -1,11 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using UnityEngine.Rendering;
-using VSCodeEditor;
 
 public class Mine : Building
 {
@@ -32,7 +26,6 @@ public class Mine : Building
     void OutputResource()
     {
         GameObject producedResource = barModel;
-        producedResource.tag = resourceType;
         outputConveyor.carriedObjects[2] = Instantiate(
             producedResource,
             outputConveyor.transform.position
@@ -41,6 +34,7 @@ public class Mine : Building
                 + new Vector3(0, .2f, 0),
             Quaternion.identity
         );
+        outputConveyor.carriedObjects[2].tag = resourceType;
     }
 
     public void ProduceResource()

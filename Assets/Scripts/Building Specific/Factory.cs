@@ -1,10 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
 
 public class Factory : Building
@@ -56,7 +51,7 @@ public class Factory : Building
                     && secondaryInput.carriedObjects[0].CompareTag(secondaryResource)
                 )
                 {
-                    Destroy(input.carriedObjects[0]);
+                    Destroy(secondaryInput.carriedObjects[0]);
                     storedResources++;
                 }
             }

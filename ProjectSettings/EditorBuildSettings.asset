@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/OutdoorsScene.unity
-    guid: 8124e5870f4fd4c779e7a5f994e84ad1
+    path: Assets/Scenes/BuildingPlaceTestScene.unity
+    guid: 06c2d03e817e1d34a83b665ece82e81d
   m_configObjects: {}
