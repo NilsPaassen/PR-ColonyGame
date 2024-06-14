@@ -13,6 +13,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Input
       objectReference: {fileID: 0}
+    - target: {fileID: 7347181926960705082, guid: f220dfe1aeb06a946b60f55dd54bd24c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7979744832343635072, guid: f220dfe1aeb06a946b60f55dd54bd24c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -151,6 +156,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: KleineFabrik
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9fd8e3615ee1ed14f8de78dc080e3355,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -493,6 +503,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Output
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347181926960705082, guid: f220dfe1aeb06a946b60f55dd54bd24c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7979744832343635072, guid: f220dfe1aeb06a946b60f55dd54bd24c,
         type: 3}

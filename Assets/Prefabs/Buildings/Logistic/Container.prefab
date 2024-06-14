@@ -78,6 +78,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Container
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 39b717529347bf445890e3ecb0cb2d07,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -194,6 +199,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ConveyorBelt
       objectReference: {fileID: 0}
+    - target: {fileID: 4801909891161185111, guid: 83d7aba1cbc19cd49b9036742ed3ef80,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5325540876702220781, guid: 83d7aba1cbc19cd49b9036742ed3ef80,
         type: 3}
       propertyPath: m_LocalScale.y
@@ -283,6 +293,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ConveyorBelt (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801909891161185111, guid: 83d7aba1cbc19cd49b9036742ed3ef80,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5325540876702220781, guid: 83d7aba1cbc19cd49b9036742ed3ef80,
         type: 3}
