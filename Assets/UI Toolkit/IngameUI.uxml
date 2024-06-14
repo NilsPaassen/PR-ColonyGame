@@ -46,6 +46,15 @@
             <ui:VisualElement name="VisualElement" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/UI%20Toolkit/Badge2.png?fileID=2800000&amp;guid=719f0a76a5b752842943fd1ecea4f803&amp;type=3#Badge2&quot;); width: 80px; height: 65px; align-items: center; justify-content: center;">
                 <ui:VisualElement name="BuildingIcon" style="flex-grow: 1; width: 55px; height: 55px; max-width: 55px; max-height: 55px; background-image: url(&quot;project://database/Assets/UI%20Toolkit/Icons/Schmelze_Icon.png?fileID=2800000&amp;guid=662edf03d792e2e4e89fa875c204fdbb&amp;type=3#Schmelze_Icon&quot;); align-items: center; justify-content: center; align-self: auto;" />
             </ui:VisualElement>
+            <ui:VisualElement name="VisualElement" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/UI%20Toolkit/Badge2.png?fileID=2800000&amp;guid=719f0a76a5b752842943fd1ecea4f803&amp;type=3#Badge2&quot;); width: 80px; height: 65px; align-items: center; justify-content: center;">
+                <ui:VisualElement name="BuildingIcon" style="flex-grow: 1; width: 55px; height: 55px; max-width: 55px; max-height: 55px; background-image: url(&quot;project://database/Assets/UI%20Toolkit/Icons/BigFactory.png?fileID=2800000&amp;guid=296d10b83fc802e4596cb17088f24c5d&amp;type=3#BigFactory&quot;); align-items: center; justify-content: center; align-self: auto;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="VisualElement" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/UI%20Toolkit/Badge2.png?fileID=2800000&amp;guid=719f0a76a5b752842943fd1ecea4f803&amp;type=3#Badge2&quot;); width: 80px; height: 65px; align-items: center; justify-content: center;">
+                <ui:VisualElement name="BuildingIcon" style="flex-grow: 1; width: 55px; height: 55px; max-width: 55px; max-height: 55px; background-image: url(&quot;project://database/Assets/UI%20Toolkit/Icons/Container.png?fileID=2800000&amp;guid=b5cd8a321520a8e499161cb2b3de8b7e&amp;type=3#Container&quot;); align-items: center; justify-content: center; align-self: auto;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="VisualElement" style="flex-grow: 0; background-image: url(&quot;project://database/Assets/UI%20Toolkit/Badge2.png?fileID=2800000&amp;guid=719f0a76a5b752842943fd1ecea4f803&amp;type=3#Badge2&quot;); width: 80px; height: 65px; align-items: center; justify-content: center;">
+                <ui:VisualElement name="BuildingIcon" style="flex-grow: 1; width: 55px; height: 55px; max-width: 55px; max-height: 55px; background-image: url(&quot;project://database/Assets/UI%20Toolkit/Icons/Flieband_Icon.png?fileID=2800000&amp;guid=6f0c30605262257469ad6d66f50384da&amp;type=3#Flieband_Icon&quot;); align-items: center; justify-content: center; align-self: auto;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

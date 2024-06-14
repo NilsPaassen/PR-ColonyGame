@@ -430,6 +430,9 @@ MonoBehaviour:
   - {fileID: 839161029832979349, guid: 8108c44b39b4c3649b504129441a159c, type: 3}
   - {fileID: 4308601935415766215, guid: 3f0b0f7a1b59bb745b854e9859807d58, type: 3}
   - {fileID: 6906039379747593168, guid: 3c1479cf00ae9db478c21e1e0fe2267a, type: 3}
+  - {fileID: 5723415809314306962, guid: d84fb716da307724fb14b40575bad8df, type: 3}
+  - {fileID: 592444366489733015, guid: 94106bd43be87d74896d909381f3376b, type: 3}
+  - {fileID: 4801909891161185111, guid: 83d7aba1cbc19cd49b9036742ed3ef80, type: 3}
 --- !u!1 &1386062462
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,6 +1314,12 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: -876546973899608171, guid: 001bac8bf9e14884d8e2eaa9f6e2fc8f,
+        type: 3}
+    - target: {fileID: 7913038287062754443, guid: d590fa9813f398445ac4d65f330346b9,
+        type: 3}
+      propertyPath: selectedBuilding
+      value: 
+      objectReference: {fileID: 6463989448844433882, guid: 83c03e4539b8f7243af6a83e24997262,
         type: 3}
     - target: {fileID: 7915232216730330516, guid: d590fa9813f398445ac4d65f330346b9,
         type: 3}
