@@ -193,13 +193,14 @@ public class BuildingPlacing : MonoBehaviour
         }
 
         //tries to activate the building specific scripts
+        Building building = previousInstance.GetComponent<Building>();
         if (previousInstance.CompareTag("Mine"))
         {
-            previousInstance.GetComponent<Building>().OnBuild(groundTag);
+            building.OnBuild(groundTag);
         }
-        else
+        else if (building)
         {
-            previousInstance.GetComponent<Building>().OnBuild();
+            building.OnBuild();
         }
 
         //makes previousInstance permament by removing the refrenced GameObject from the variable, thus it no longer gets deleted
