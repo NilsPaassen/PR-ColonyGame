@@ -122,7 +122,7 @@ public class BuildingPlacing : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(cursorAction.ReadValue<Vector2>());
         //layer 3 == BuildableOn
         if (
-            Physics.Raycast(ray, out RaycastHit hit, 1000.0f,~LayerMask.GetMask("Preview"))
+            Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview"))
             && hit.collider.gameObject.layer == LayerMask.NameToLayer("BuildableOn")
             && hit.collider.gameObject != previousHit
         )
@@ -132,10 +132,14 @@ public class BuildingPlacing : MonoBehaviour
             {
                 Destroy(previousInstance, 0);
             }
-            
+
             previousInstance = Instantiate(
                 selectedBuilding,
-                 new Vector3(Mathf.RoundToInt(hit.point.x),Mathf.RoundToInt(hit.point.y),Mathf.RoundToInt(hit.point.z))+ selectedBuilding.transform.position,
+                new Vector3(
+                    Mathf.RoundToInt(hit.point.x),
+                    Mathf.RoundToInt(hit.point.y),
+                    Mathf.RoundToInt(hit.point.z)
+                ) + selectedBuilding.transform.position,
                 buildingRotation
             );
             groundTag = hit.collider.gameObject.tag;
