@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class UI : MonoBehaviour
+public class BuildingsSelector : MonoBehaviour
 {
     public GameObject[] buildings;
 
