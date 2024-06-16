@@ -19,7 +19,7 @@ public class BuildingPlacing : MonoBehaviour
     public GameObject selectedBuilding;
 
     //for building preview
-    private GameObject previousHit;
+    private Vector3 previousHitPos;
     private GameObject previousInstance;
 
     //for rotation
@@ -124,15 +124,24 @@ public class BuildingPlacing : MonoBehaviour
         if (
             Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview"))
             && hit.collider.gameObject.layer == LayerMask.NameToLayer("BuildableOn")
-            && hit.collider.gameObject != previousHit
+            && previousHitPos != new Vector3(
+                    Mathf.RoundToInt(hit.point.x),
+                    Mathf.RoundToInt(hit.point.y),
+                    Mathf.RoundToInt(hit.point.z)
+                )
         )
         {
+            previousHitPos = new Vector3(
+                    Mathf.RoundToInt(hit.point.x),
+                    Mathf.RoundToInt(hit.point.y),
+                    Mathf.RoundToInt(hit.point.z)
+                );
             //if a preview Instance exists it gets destroyed
             if (previousInstance != null)
             {
                 Destroy(previousInstance, 0);
             }
-
+            Debug.Log("New Preview");
             previousInstance = Instantiate(
                 selectedBuilding,
                 new Vector3(
@@ -197,6 +206,8 @@ public class BuildingPlacing : MonoBehaviour
         {
             collider.isTrigger = true;
         }
+
+
 
         //tries to activate the building specific scripts
         Building building = previousInstance.GetComponent<Building>();

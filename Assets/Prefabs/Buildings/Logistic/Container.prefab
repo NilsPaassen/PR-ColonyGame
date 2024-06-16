@@ -130,7 +130,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -194,6 +194,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 248570646923910445}
     m_Modifications:
+    - target: {fileID: 220879326836488324, guid: 83d7aba1cbc19cd49b9036742ed3ef80,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4801909891161185111, guid: 83d7aba1cbc19cd49b9036742ed3ef80,
         type: 3}
       propertyPath: m_Name
@@ -289,6 +294,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 248570646923910445}
     m_Modifications:
+    - target: {fileID: 220879326836488324, guid: 83d7aba1cbc19cd49b9036742ed3ef80,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4801909891161185111, guid: 83d7aba1cbc19cd49b9036742ed3ef80,
         type: 3}
       propertyPath: m_Name
