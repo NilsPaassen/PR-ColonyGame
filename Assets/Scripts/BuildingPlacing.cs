@@ -124,7 +124,8 @@ public class BuildingPlacing : MonoBehaviour
         if (
             Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview"))
             && hit.collider.gameObject.layer == LayerMask.NameToLayer("BuildableOn")
-            && previousHitPos != new Vector3(
+            && previousHitPos
+                != new Vector3(
                     Mathf.RoundToInt(hit.point.x),
                     Mathf.RoundToInt(hit.point.y),
                     Mathf.RoundToInt(hit.point.z)
@@ -132,10 +133,10 @@ public class BuildingPlacing : MonoBehaviour
         )
         {
             previousHitPos = new Vector3(
-                    Mathf.RoundToInt(hit.point.x),
-                    Mathf.RoundToInt(hit.point.y),
-                    Mathf.RoundToInt(hit.point.z)
-                );
+                Mathf.RoundToInt(hit.point.x),
+                Mathf.RoundToInt(hit.point.y),
+                Mathf.RoundToInt(hit.point.z)
+            );
             //if a preview Instance exists it gets destroyed
             if (previousInstance != null)
             {
@@ -206,8 +207,6 @@ public class BuildingPlacing : MonoBehaviour
         {
             collider.isTrigger = true;
         }
-
-
 
         //tries to activate the building specific scripts
         Building building = previousInstance.GetComponent<Building>();
