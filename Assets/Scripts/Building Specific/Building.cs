@@ -34,9 +34,8 @@ public abstract class Building : MonoBehaviour
     {
         foreach (Material mat in sunMaterials)
         {
-            mat.SetFloat("_sunValue", sun.transform.rotation.eulerAngles.x % 360<180? 0.5f:0);
+            mat.SetFloat("_sunValue", sun.transform.rotation.eulerAngles.x % 360 < 180 ? 0.5f : 0);
             Debug.Log(mat.GetFloat("_sunValue"));
-            
         }
     }
 }

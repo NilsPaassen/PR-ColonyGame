@@ -51,10 +51,12 @@ public class Container : Building
         storedAmount++;
         Destroy(inputConveyor.carriedObjects[0]);
     }
+
     protected override void Start()
     {
         base.Start();
     }
+
     protected override void Update()
     {
         base.Update();
