@@ -123,7 +123,8 @@ public class BuildingPlacing : MonoBehaviour
         //layer 3 == BuildableOn
         if (
             Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview"))
-            && 1 << hit.collider.gameObject.layer == LayerMask.GetMask("BuildableOn", "OrePlace")
+            //unter keinen umständen hinterfragen| guckt ob layer in der mask ist
+            && LayerMask.GetMask("BuildableOn", "OrePlace") == ((1 << hit.collider.gameObject.layer) | LayerMask.GetMask("BuildableOn", "OrePlace"))
             && previousHitPos
                 != new Vector3(
                     Mathf.RoundToInt(hit.point.x),
@@ -132,6 +133,7 @@ public class BuildingPlacing : MonoBehaviour
                 )
         )
         {
+            groundTag = hit.collider.gameObject.tag;
             previousHitPos = new Vector3(
                 Mathf.RoundToInt(hit.point.x),
                 Mathf.RoundToInt(hit.point.y),
