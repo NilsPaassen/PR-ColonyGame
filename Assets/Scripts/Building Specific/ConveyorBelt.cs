@@ -27,17 +27,15 @@ public class ConveyorBelt : Building
         {
             return nextConveyorBelt;
         }
-
         RaycastHit hit;
         Ray ray = new Ray(
             transform.position + new Vector3(0, 0.05f, 0),
             Quaternion.Euler(transform.rotation.eulerAngles) * new Vector3(-1, 0, 0)
         );
-        Physics.Raycast(ray, out hit, 2f);
-
+        Physics.Raycast(ray, out hit, 1f);
         if (
-            !hit.collider.IsUnityNull()
-            && hit.collider.gameObject.layer == LayerMask.NameToLayer("ConveyorBelt")
+            hit.collider
+            && hit.collider.gameObject.CompareTag("ConveyorBelt")
             && hit.collider.gameObject.GetComponent<MeshRenderer>().material.GetInt("_isPreview")
                 == 0
         )
@@ -55,6 +53,7 @@ public class ConveyorBelt : Building
 
     void TransferCarriedObjecs()
     {
+
         if (nextConveyorBelt == null)
         {
             nextConveyorBelt = CheckForFrontConveyor();

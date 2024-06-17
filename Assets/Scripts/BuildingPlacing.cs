@@ -11,6 +11,7 @@ public class BuildingPlacing : MonoBehaviour
     private InputAction cursorAction;
     private InputAction rotateAction;
     private InputAction placeAction;
+    private InputAction destroyAction;
 
     private bool inBuildMode = false;
     private bool buildModePaused = false;
@@ -39,11 +40,16 @@ public class BuildingPlacing : MonoBehaviour
         cursorAction = buildModeActions.Cursor;
         rotateAction = buildModeActions.Rotate;
         placeAction = buildModeActions.Place;
+        destroyAction = playerActions.DestroyBuilding;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (destroyAction.WasPressedThisFrame())
+        {
+            DestroyBuilding();
+        }
         //When B is pressed go to build mode
         if (buildModeAction.WasPressedThisFrame())
         {
@@ -58,6 +64,8 @@ public class BuildingPlacing : MonoBehaviour
         {
             Destroy(previousInstance, 0);
         }
+
+
 
         //Rotate by 90°
         if (rotateAction.WasPressedThisFrame() && previousInstance != null)
@@ -148,7 +156,6 @@ public class BuildingPlacing : MonoBehaviour
             {
                 Destroy(previousInstance, 0);
             }
-            Debug.Log("New Preview");
             previousInstance = Instantiate(
                 selectedBuilding,
                 new Vector3(
@@ -176,6 +183,29 @@ public class BuildingPlacing : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    private void DestroyBuilding()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(cursorAction.ReadValue<Vector2>());
+        Physics.Raycast(ray, out RaycastHit hit, 1000.0f);
+        GameObject target = null;
+        if (hit.collider)
+        {
+            Debug.Log(hit.collider.gameObject);
+            target = 8 == hit.collider.gameObject.layer ? hit.collider.gameObject : null;
+        }
+
+        if (target)
+        {
+            foreach (Transform t in target.GetComponentInChildren<Transform>())
+            {
+                if (t.gameObject)
+                    Destroy(t.gameObject);
+            }
+
+            Destroy(target);
         }
     }
 
@@ -209,7 +239,7 @@ public class BuildingPlacing : MonoBehaviour
         }
 
         //sets Is Trigger to true so that the building can now interact with the Building preview
-        foreach (Collider collider in previousInstance.GetComponents<Collider>())
+        foreach (Collider collider in previousInstance.GetComponentsInChildren<Collider>())
         {
             collider.isTrigger = true;
         }
@@ -246,7 +276,7 @@ public class BuildingPlacing : MonoBehaviour
             & !(groundTag == "IronOre" || groundTag == "Cole" || groundTag == "CopperOre")
         )
         {
-            return false;
+            //return false;
         }
         return true;
     }

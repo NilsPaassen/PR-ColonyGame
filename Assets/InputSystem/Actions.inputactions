@@ -24,6 +24,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Build Mode",
+                    "type": "Button",
+                    "id": "0ebb5e40-dd80-4996-b777-eeaaf01848ea",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Rotate",
                     "type": "Value",
                     "id": "bfe0fec8-6143-4550-ad65-8bc234185aac",
@@ -33,9 +42,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Build Mode",
+                    "name": "DestroyBuilding",
                     "type": "Button",
-                    "id": "0ebb5e40-dd80-4996-b777-eeaaf01848ea",
+                    "id": "593384a8-965f-440b-8a91-7cc78297c4e2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -43,17 +52,6 @@
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "1061c4ac-c05e-45e1-8341-32c00dba6ef6",
-                    "path": "<Keyboard>/#(B)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Build Mode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "",
                     "id": "2f01befe-0400-4d04-b163-b81039060c8c",
@@ -625,6 +623,28 @@
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "1061c4ac-c05e-45e1-8341-32c00dba6ef6",
+                    "path": "<Keyboard>/#(B)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Build Mode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c9ab88d-7acd-4cac-b2fc-eef1cf94c976",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DestroyBuilding",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

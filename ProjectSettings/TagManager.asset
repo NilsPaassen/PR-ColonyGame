@@ -14,6 +14,7 @@ TagManager:
   - WorldController
   - Coal
   - Sun
+  - ConveyorBelt
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Water
   - UI
   - Building
-  - ConveyorBelt
+  - 
   - Preview
   - OrePlace
   - 
