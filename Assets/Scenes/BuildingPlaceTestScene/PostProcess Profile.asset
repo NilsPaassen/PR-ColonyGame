@@ -197,7 +197,7 @@ MonoBehaviour:
     m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   tint:
     m_OverrideState: 0
-    m_Value: {r: 0.4202295, g: 0.28380987, b: 0.51572317, a: 1}
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
   maxFogDistance:
     m_OverrideState: 0
     m_Value: 5000
@@ -279,7 +279,7 @@ MonoBehaviour:
     m_Value: 0.9
   intensity:
     m_OverrideState: 1
-    m_Value: 0.47
+    m_Value: 1
   scatter:
     m_OverrideState: 1
     m_Value: 0.7
@@ -390,8 +390,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   groundTint:
-    m_OverrideState: 0
-    m_Value: {r: 0.4, g: 0.25, b: 0.15, a: 1}
+    m_OverrideState: 1
+    m_Value: {r: 0.49288437, g: 0.58431375, b: 0.13725488, a: 1}
   groundColorTexture:
     m_OverrideState: 0
     m_Value: {fileID: 8900000, guid: 98098812a02cf2f46b17414434f11731, type: 3}
@@ -403,10 +403,10 @@ MonoBehaviour:
     m_Value: 151.82
   planetRotation:
     m_OverrideState: 0
-    m_Value: {x: 0, y: 0, z: 0}
+    m_Value: {x: 4.25, y: 0, z: 0}
   spaceEmissionTexture:
     m_OverrideState: 1
-    m_Value: {fileID: 8900000, guid: 98098812a02cf2f46b17414434f11731, type: 3}
+    m_Value: {fileID: 8900000, guid: 9e3f8b4c840fd9249bb9d4be80387975, type: 3}
   spaceEmissionMultiplier:
     m_OverrideState: 1
     m_Value: 6.63
@@ -525,16 +525,16 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 4
   cloudType:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   skyAmbientMode:
     m_OverrideState: 0
     m_Value: 1
   windOrientation:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   windSpeed:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 0
   fogType:
     m_OverrideState: 1
