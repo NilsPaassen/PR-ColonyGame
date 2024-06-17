@@ -14,8 +14,13 @@ public class Mine : Building
 
     public String resourceType;
 
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         if (resourcesStored > 0 && outputConveyor.carriedObjects[2] == null)
         {

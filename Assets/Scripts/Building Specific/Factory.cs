@@ -32,8 +32,13 @@ public class Factory : Building
     private bool productionIsInvoked = false;
     private bool isBuild = false;
 
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         if (isBuild)
         {
@@ -130,7 +135,6 @@ public class Factory : Building
 
     public override void OnBuild()
     {
-        Debug.Log("OnBuild executed");
         input = inputCBObject.GetComponent<ConveyorBelt>();
         if (!secondaryInputCBObject.IsUnityNull())
         {

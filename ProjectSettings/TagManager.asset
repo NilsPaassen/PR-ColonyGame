@@ -13,6 +13,7 @@ TagManager:
   - SteelBar
   - WorldController
   - Coal
+  - Sun
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Building
   - ConveyorBelt
   - Preview
-  - 
+  - OrePlace
   - 
   - 
   - 

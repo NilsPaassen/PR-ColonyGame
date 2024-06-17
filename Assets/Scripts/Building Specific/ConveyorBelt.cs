@@ -10,6 +10,16 @@ public class ConveyorBelt : Building
     //0 == middle; 1 == end; 2 == beginning;
     public int position = 0;
 
+
+    protected override void Start()
+    {
+        base.Start();
+    }
+    protected override void Update()
+    {
+        base.Update();
+    }
+
     public GameObject CheckForFrontConveyor()
     {
         //the end object should never change what their next object is
@@ -17,12 +27,6 @@ public class ConveyorBelt : Building
         {
             return nextConveyorBelt;
         }
-        Debug.DrawRay(
-            transform.position + new Vector3(0, 0.05f, 0),
-            Quaternion.Euler(transform.rotation.eulerAngles) * new Vector3(-1, 0, 0),
-            Color.blue,
-            3f
-        );
 
         RaycastHit hit;
         Ray ray = new Ray(
