@@ -132,10 +132,10 @@ public class BuildingPlacing : MonoBehaviour
         )
         {
             previousHitPos = new Vector3(
-                    Mathf.RoundToInt(hit.point.x),
-                    Mathf.RoundToInt(hit.point.y),
-                    Mathf.RoundToInt(hit.point.z)
-                );
+                Mathf.RoundToInt(hit.point.x),
+                Mathf.RoundToInt(hit.point.y),
+                Mathf.RoundToInt(hit.point.z)
+            );
             //if a preview Instance exists it gets destroyed
             if (previousInstance != null)
             {
