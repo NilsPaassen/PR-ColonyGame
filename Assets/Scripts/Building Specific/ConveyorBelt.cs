@@ -53,7 +53,6 @@ public class ConveyorBelt : Building
 
     void TransferCarriedObjecs()
     {
-
         if (nextConveyorBelt == null)
         {
             nextConveyorBelt = CheckForFrontConveyor();

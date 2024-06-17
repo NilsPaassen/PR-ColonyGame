@@ -65,8 +65,6 @@ public class BuildingPlacing : MonoBehaviour
             Destroy(previousInstance, 0);
         }
 
-
-
         //Rotate by 90°
         if (rotateAction.WasPressedThisFrame() && previousInstance != null)
         {

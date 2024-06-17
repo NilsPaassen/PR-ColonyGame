@@ -6,7 +6,6 @@ public class BuildingSpaceAvailable : MonoBehaviour
     {
         if (c.gameObject.layer == LayerMask.NameToLayer("Preview"))
         {
-
             //Collider has to be set up to only detect buildings
             //Colors the preview red (only a previewd building should possibly be detected)
             foreach (MeshRenderer meshRenderer in c.GetComponentsInChildren<MeshRenderer>())
