@@ -124,7 +124,11 @@ public class BuildingPlacing : MonoBehaviour
         if (
             Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview"))
             //unter keinen umständen hinterfragen| guckt ob layer in der mask ist
-            && LayerMask.GetMask("BuildableOn", "OrePlace") == ((1 << hit.collider.gameObject.layer) | LayerMask.GetMask("BuildableOn", "OrePlace"))
+            && LayerMask.GetMask("BuildableOn", "OrePlace")
+                == (
+                    (1 << hit.collider.gameObject.layer)
+                    | LayerMask.GetMask("BuildableOn", "OrePlace")
+                )
             && previousHitPos
                 != new Vector3(
                     Mathf.RoundToInt(hit.point.x),
