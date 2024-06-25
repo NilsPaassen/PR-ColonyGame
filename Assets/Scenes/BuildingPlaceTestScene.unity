@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 5401.5923, g: 5652.5103, b: 2299.9065, a: 1}
+  m_IndirectSpecularColor: {r: 0.06730252, g: 0.080159105, b: 0.051561303, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -513,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 100000
+  m_Intensity: 1
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -635,7 +635,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 100000
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -678,7 +678,7 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5391
+  m_ColorTemperature: 5400
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 4e-45, y: 1.7e-44, z: 2.0366e-41, w: 1e-44}
   m_UseBoundingSphereOverride: 0
@@ -707,11 +707,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 949944228}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0baa93e90071ab4d8c3611145828c39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeScale: 0.001
+  lightOffset: 7700
+  lightScale: 2300
 --- !u!1 &1347300646
 GameObject:
   m_ObjectHideFlags: 0
