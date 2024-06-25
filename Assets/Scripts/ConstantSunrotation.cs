@@ -15,7 +15,6 @@ public class ConstantSunrotation : MonoBehaviour
 
     void Start()
     {
-
         lightComp = GetComponent<Light>();
         //Invoke("DayNightCicle", 480);
     }
@@ -23,7 +22,8 @@ public class ConstantSunrotation : MonoBehaviour
     void Update()
     {
         //Debug.Log(Mathf.Sin(Time.fixedTime * timeScale) * lightScale + lightOffset);
-        lightComp.colorTemperature = Mathf.Sin(Time.fixedTime * timeScale) * lightScale + lightOffset;
+        lightComp.colorTemperature =
+            Mathf.Sin(Time.fixedTime * timeScale) * lightScale + lightOffset;
     }
 
     public void DayNightCicle()

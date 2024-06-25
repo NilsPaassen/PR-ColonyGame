@@ -10,5 +10,6 @@ public abstract class Building : MonoBehaviour
     public virtual void OnBuild(String param) { }
 
     protected virtual void Update() { }
+
     protected virtual void Start() { }
 }
