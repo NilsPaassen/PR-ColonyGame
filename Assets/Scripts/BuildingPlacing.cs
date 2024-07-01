@@ -280,7 +280,4 @@ public class BuildingPlacing : MonoBehaviour
         }
         return true;
     }
-
 }
-
-
