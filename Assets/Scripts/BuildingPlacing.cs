@@ -135,7 +135,12 @@ public class BuildingPlacing : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue, 10f);
         //layer 3 == BuildableOn
         if (
-            Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview", "Building"))
+            Physics.Raycast(
+                ray,
+                out RaycastHit hit,
+                1000.0f,
+                ~LayerMask.GetMask("Preview", "Building")
+            )
             //unter keinen umständen hinterfragen| guckt ob layer in der mask ist
             && LayerMask.GetMask("BuildableOn", "OrePlace")
                 == (
