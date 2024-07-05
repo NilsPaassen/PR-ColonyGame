@@ -50,8 +50,9 @@ public class Factory : Building
             {
                 Destroy(input.carriedObjects[0]);
                 storedResources++;
-                if (secondaryInput&&
-                    storedSecondaryResources < storedSecondaryResourcesLimit
+                if (
+                    secondaryInput
+                    && storedSecondaryResources < storedSecondaryResourcesLimit
                     && secondaryInput.carriedObjects[0] != null
                     && secondaryInput.carriedObjects[0].CompareTag(secondaryResource)
                 )
@@ -60,12 +61,12 @@ public class Factory : Building
                     storedResources++;
                 }
             }
-            
+
             if (
                 !productionIsInvoked
                 && storedResources >= requiredResources
                 && storedSecondaryResources >= requiredSecondaryResources
-                && storedProduct + producedAmount<= storedProductLimit
+                && storedProduct + producedAmount <= storedProductLimit
             )
             {
                 productionIsInvoked = true;
@@ -73,7 +74,7 @@ public class Factory : Building
             }
 
             if (storedProduct > 0 && outputConveyor.carriedObjects[2] == null)
-            {   
+            {
                 OutputResource();
                 storedProduct--;
             }
@@ -87,7 +88,8 @@ public class Factory : Building
         storedProduct = +producedAmount;
         productionIsInvoked = false;
     }
-void OutputResource()
+
+    void OutputResource()
     {
         GameObject producedResource = outputProductModel;
         outputConveyor.carriedObjects[2] = Instantiate(
@@ -100,6 +102,7 @@ void OutputResource()
         );
         outputConveyor.carriedObjects[2].tag = selectedProduct;
     }
+
     public void SelectSmelterRecipe(String recipeName)
     {
         JSONStructures.Recipe recipe = GameObject
