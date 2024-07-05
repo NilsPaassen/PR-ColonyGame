@@ -57,7 +57,7 @@ public class BuildingsSelector : MonoBehaviour
         return (evt) =>
         {
             buildingPlacing.selectedBuilding = building;
-            buildingPlacing.enableBuildMode();
+            buildingPlacing.EnableBuildMode();
         };
     }
 }

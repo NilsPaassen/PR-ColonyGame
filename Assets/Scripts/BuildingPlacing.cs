@@ -25,6 +25,9 @@ public class BuildingPlacing : MonoBehaviour
     private Vector3 previousHitPos;
     private GameObject previousInstance;
 
+    //for destroy mode
+    private GameObject previousTarget;
+
     //for rotation
     private Quaternion buildingRotation;
 
@@ -53,12 +56,43 @@ public class BuildingPlacing : MonoBehaviour
         if (destroyAction.WasPressedThisFrame())
         {
             inDestroyMode = !inDestroyMode;
+            if (!inDestroyMode && previousTarget != null)
+            {
+                ChangeObjectOutline(Color.black, 0.01f, previousTarget);
+            }
             DisableBuildMode();
         }
 
-        if (inDestroyMode && interactAction.WasPressedThisFrame())
+        if (inDestroyMode)
         {
-            DestroyBuilding();
+            GameObject target = null;
+            if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview")))
+            {
+                target = 6 == hit.collider.gameObject.layer ? hit.collider.gameObject : null;
+                if (target != null)
+                {
+                    while (target.transform.parent != null)
+                    {
+                        target = target.transform.parent.gameObject;
+                    }
+                }
+            }
+
+            if (target != null && target != previousTarget)
+            {
+                //set outline color to red
+                ChangeObjectOutline(Color.red, 0.075f, target);
+            }
+            if (previousTarget != null && target != previousTarget)
+            {
+                //reset the outline of the previous target
+                ChangeObjectOutline(Color.black, 0.01f, previousTarget);
+            }
+            if (interactAction.WasPressedThisFrame() && target != null)
+            {
+                DestroyBuilding(target);
+            }
+            previousTarget = target;
         }
 
         //When B is pressed go to build mode
@@ -96,10 +130,27 @@ public class BuildingPlacing : MonoBehaviour
         }
     }
 
-    public void enableBuildMode()
+    private void ChangeObjectOutline(Color pColor, float pThickness, GameObject pTarget)
+    {
+        //set outline color to red
+        foreach (Transform t in pTarget.GetComponentsInChildren<Transform>())
+        {
+            Material[] materials = t.gameObject.GetComponent<MeshRenderer>().materials;
+            if (materials[materials.Length - 1].HasColor("_OutlineColor"))
+            {
+                materials[materials.Length - 1].SetColor("_OutlineColor", pColor);
+                materials[materials.Length - 1].SetFloat("_OutlineThickness", pThickness);
+            }
+        }
+    }
+
+    public void EnableBuildMode()
     {
         buildingRotation = selectedBuilding.transform.rotation;
         inBuildMode = true;
+        inDestroyMode = false;
+        if (previousTarget != null)
+            ChangeObjectOutline(Color.black, 0.01f, previousTarget);
     }
 
     public void DisableBuildMode()
@@ -125,8 +176,7 @@ public class BuildingPlacing : MonoBehaviour
         }
         else
         {
-            enableBuildMode();
-            inDestroyMode = false;
+            EnableBuildMode();
         }
     }
 
@@ -135,7 +185,12 @@ public class BuildingPlacing : MonoBehaviour
         Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue, 10f);
         //layer 3 == BuildableOn
         if (
-            Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview", "Building"))
+            Physics.Raycast(
+                ray,
+                out RaycastHit hit,
+                1000.0f,
+                ~LayerMask.GetMask("Preview", "Building")
+            )
             //unter keinen umständen hinterfragen| guckt ob layer in der mask ist
             && LayerMask.GetMask("BuildableOn", "OrePlace")
                 == (
@@ -192,26 +247,13 @@ public class BuildingPlacing : MonoBehaviour
         }
     }
 
-    private void DestroyBuilding()
+    private void DestroyBuilding(GameObject target)
     {
         //Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red, 10f);
-        GameObject target = null;
-        if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview")))
-        {
-            Debug.Log(hit.collider.gameObject);
-            target = 6 == hit.collider.gameObject.layer ? hit.collider.gameObject : null;
-        }
-        else
-        {
-            return;
-        }
+
 
         if (target)
         {
-            while (target.transform.parent != null)
-            {
-                target = target.transform.parent.gameObject;
-            }
             foreach (Transform t in target.GetComponentInChildren<Transform>())
             {
                 if (t.gameObject)
