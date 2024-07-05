@@ -128,6 +128,7 @@ public class BuildingPlacing : MonoBehaviour
     private void PlacePreview()
     {
         Ray ray = Camera.main.ScreenPointToRay(cursorAction.ReadValue<Vector2>());
+        //Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red, 10f);
         //layer 3 == BuildableOn
         if (
             Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview"))
@@ -189,12 +190,15 @@ public class BuildingPlacing : MonoBehaviour
     private void DestroyBuilding()
     {
         Ray ray = Camera.main.ScreenPointToRay(cursorAction.ReadValue<Vector2>());
-        Physics.Raycast(ray, out RaycastHit hit, 1000.0f);
+        //Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red, 10f);
         GameObject target = null;
-        if (hit.collider)
+        if ( Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview")))
         {
             Debug.Log(hit.collider.gameObject);
-            target = 8 == hit.collider.gameObject.layer ? hit.collider.gameObject : null;
+            target = 6 == hit.collider.gameObject.layer ? hit.collider.gameObject : null;
+        }else
+        {
+            return;
         }
 
         if (target)
@@ -276,7 +280,7 @@ public class BuildingPlacing : MonoBehaviour
             & !(groundTag == "IronOre" || groundTag == "Cole" || groundTag == "CopperOre")
         )
         {
-            //return false;
+            return false;
         }
         return true;
     }

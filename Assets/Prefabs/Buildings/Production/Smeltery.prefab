@@ -365,13 +365,13 @@ MonoBehaviour:
   inputCBObject: {fileID: 3823269784285023562}
   secondaryInputCBObject: {fileID: 0}
   outputCBObject: {fileID: 1548320170327426695}
-  selectedProduct: CopperBar
+  selectedProduct: IronBar
   outputProductModel: {fileID: 5381639898744295563, guid: 9ca5d36e357b5e944977ffea23847ef3,
     type: 3}
-  resource: 
+  resource: IronOre
   secondaryResource: 
   storedProductLimit: 100
-  producedAmount: 5
+  producedAmount: 1
   requiredResources: 1
   requiredSecondaryResources: 0
 --- !u!114 &-3066879500449200787
@@ -452,7 +452,7 @@ PrefabInstance:
     - target: {fileID: 6355517695595192572, guid: 83d7aba1cbc19cd49b9036742ed3ef80,
         type: 3}
       propertyPath: position
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -537,7 +537,7 @@ PrefabInstance:
     - target: {fileID: 6355517695595192572, guid: 83d7aba1cbc19cd49b9036742ed3ef80,
         type: 3}
       propertyPath: position
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

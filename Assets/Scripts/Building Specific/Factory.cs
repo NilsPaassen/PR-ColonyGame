@@ -50,7 +50,7 @@ public class Factory : Building
             {
                 Destroy(input.carriedObjects[0]);
                 storedResources++;
-                if (
+                if (secondaryInput&&
                     storedSecondaryResources < storedSecondaryResourcesLimit
                     && secondaryInput.carriedObjects[0] != null
                     && secondaryInput.carriedObjects[0].CompareTag(secondaryResource)
@@ -60,28 +60,21 @@ public class Factory : Building
                     storedResources++;
                 }
             }
+            
             if (
                 !productionIsInvoked
                 && storedResources >= requiredResources
                 && storedSecondaryResources >= requiredSecondaryResources
-                && storedProduct > storedProductLimit
+                && storedProduct + producedAmount<= storedProductLimit
             )
             {
                 productionIsInvoked = true;
                 Invoke("ProduceResource", 1f);
             }
+
             if (storedProduct > 0 && outputConveyor.carriedObjects[2] == null)
-            {
-                GameObject outputProduct = new GameObject(selectedProduct);
-                outputProduct.tag = selectedProduct;
-                outputConveyor.carriedObjects[2] = Instantiate(
-                    outputProduct,
-                    outputConveyor.transform.position
-                        - Quaternion.Euler(outputConveyor.transform.rotation.eulerAngles)
-                            * new Vector3(-0.35f, 0, 0)
-                        + new Vector3(0, .2f, 0),
-                    Quaternion.identity
-                );
+            {   
+                OutputResource();
                 storedProduct--;
             }
         }
@@ -94,7 +87,19 @@ public class Factory : Building
         storedProduct = +producedAmount;
         productionIsInvoked = false;
     }
-
+void OutputResource()
+    {
+        GameObject producedResource = outputProductModel;
+        outputConveyor.carriedObjects[2] = Instantiate(
+            producedResource,
+            outputConveyor.transform.position
+                - Quaternion.Euler(outputConveyor.transform.rotation.eulerAngles)
+                    * new Vector3(-0.35f, 0, 0)
+                + new Vector3(0, .2f, 0),
+            Quaternion.identity
+        );
+        outputConveyor.carriedObjects[2].tag = selectedProduct;
+    }
     public void SelectSmelterRecipe(String recipeName)
     {
         JSONStructures.Recipe recipe = GameObject
