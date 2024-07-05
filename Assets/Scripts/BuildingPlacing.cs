@@ -192,11 +192,12 @@ public class BuildingPlacing : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(cursorAction.ReadValue<Vector2>());
         //Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red, 10f);
         GameObject target = null;
-        if ( Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview")))
+        if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview")))
         {
             Debug.Log(hit.collider.gameObject);
             target = 6 == hit.collider.gameObject.layer ? hit.collider.gameObject : null;
-        }else
+        }
+        else
         {
             return;
         }
