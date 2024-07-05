@@ -71,6 +71,33 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cursor"",
+                    ""type"": ""Value"",
+                    ""id"": ""0623c165-9413-442e-99d5-7c34479a4dcd"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""RotateBuilding"",
+                    ""type"": ""Button"",
+                    ""id"": ""c5c62530-6144-4a2f-837f-3b2099e524a5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""a6c6dca6-3523-41ef-a03d-95cb222e4644"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -667,45 +694,10 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                     ""action"": ""DestroyBuilding"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Build Mode"",
-            ""id"": ""11bcd613-3af2-42ff-80b4-af2811878114"",
-            ""actions"": [
-                {
-                    ""name"": ""Cursor"",
-                    ""type"": ""Value"",
-                    ""id"": ""f3063794-c3f5-4d4a-ac84-49f820e48948"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 },
-                {
-                    ""name"": ""Rotate"",
-                    ""type"": ""Button"",
-                    ""id"": ""f01fee13-f65f-4942-9a86-223e7df2e7db"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Place"",
-                    ""type"": ""Button"",
-                    ""id"": ""830f68dd-1b7c-4138-b327-a691318acf3e"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""a7aa5400-81da-4ed7-8fe6-ab8e443f62fb"",
+                    ""id"": ""fa4b9f1a-22db-4359-b6eb-517ab8bd18a6"",
                     ""path"": ""<Mouse>/position"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -716,23 +708,23 @@ public partial class @Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""059ef156-0200-4fc0-a83e-6d771b0f8f4c"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""2bd51349-44f8-456f-ba72-183aeb1f26a5"",
+                    ""path"": ""<Keyboard>/#(R)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Place"",
+                    ""action"": ""RotateBuilding"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ef68a01b-cfe9-44e1-9317-ffe4fcac3861"",
-                    ""path"": ""<Keyboard>/#(R)"",
+                    ""id"": ""bbe15a5d-d682-42df-b894-3aa269a2a3ac"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Rotate"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -748,11 +740,9 @@ public partial class @Actions: IInputActionCollection2, IDisposable
         m_Player_BuildMode = m_Player.FindAction("Build Mode", throwIfNotFound: true);
         m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
         m_Player_DestroyBuilding = m_Player.FindAction("DestroyBuilding", throwIfNotFound: true);
-        // Build Mode
-        m_BuildMode = asset.FindActionMap("Build Mode", throwIfNotFound: true);
-        m_BuildMode_Cursor = m_BuildMode.FindAction("Cursor", throwIfNotFound: true);
-        m_BuildMode_Rotate = m_BuildMode.FindAction("Rotate", throwIfNotFound: true);
-        m_BuildMode_Place = m_BuildMode.FindAction("Place", throwIfNotFound: true);
+        m_Player_Cursor = m_Player.FindAction("Cursor", throwIfNotFound: true);
+        m_Player_RotateBuilding = m_Player.FindAction("RotateBuilding", throwIfNotFound: true);
+        m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -819,6 +809,9 @@ public partial class @Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_BuildMode;
     private readonly InputAction m_Player_Rotate;
     private readonly InputAction m_Player_DestroyBuilding;
+    private readonly InputAction m_Player_Cursor;
+    private readonly InputAction m_Player_RotateBuilding;
+    private readonly InputAction m_Player_Interact;
     public struct PlayerActions
     {
         private @Actions m_Wrapper;
@@ -828,6 +821,9 @@ public partial class @Actions: IInputActionCollection2, IDisposable
         public InputAction @BuildMode => m_Wrapper.m_Player_BuildMode;
         public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
         public InputAction @DestroyBuilding => m_Wrapper.m_Player_DestroyBuilding;
+        public InputAction @Cursor => m_Wrapper.m_Player_Cursor;
+        public InputAction @RotateBuilding => m_Wrapper.m_Player_RotateBuilding;
+        public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -852,6 +848,15 @@ public partial class @Actions: IInputActionCollection2, IDisposable
             @DestroyBuilding.started += instance.OnDestroyBuilding;
             @DestroyBuilding.performed += instance.OnDestroyBuilding;
             @DestroyBuilding.canceled += instance.OnDestroyBuilding;
+            @Cursor.started += instance.OnCursor;
+            @Cursor.performed += instance.OnCursor;
+            @Cursor.canceled += instance.OnCursor;
+            @RotateBuilding.started += instance.OnRotateBuilding;
+            @RotateBuilding.performed += instance.OnRotateBuilding;
+            @RotateBuilding.canceled += instance.OnRotateBuilding;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -871,6 +876,15 @@ public partial class @Actions: IInputActionCollection2, IDisposable
             @DestroyBuilding.started -= instance.OnDestroyBuilding;
             @DestroyBuilding.performed -= instance.OnDestroyBuilding;
             @DestroyBuilding.canceled -= instance.OnDestroyBuilding;
+            @Cursor.started -= instance.OnCursor;
+            @Cursor.performed -= instance.OnCursor;
+            @Cursor.canceled -= instance.OnCursor;
+            @RotateBuilding.started -= instance.OnRotateBuilding;
+            @RotateBuilding.performed -= instance.OnRotateBuilding;
+            @RotateBuilding.canceled -= instance.OnRotateBuilding;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -888,68 +902,6 @@ public partial class @Actions: IInputActionCollection2, IDisposable
         }
     }
     public PlayerActions @Player => new PlayerActions(this);
-
-    // Build Mode
-    private readonly InputActionMap m_BuildMode;
-    private List<IBuildModeActions> m_BuildModeActionsCallbackInterfaces = new List<IBuildModeActions>();
-    private readonly InputAction m_BuildMode_Cursor;
-    private readonly InputAction m_BuildMode_Rotate;
-    private readonly InputAction m_BuildMode_Place;
-    public struct BuildModeActions
-    {
-        private @Actions m_Wrapper;
-        public BuildModeActions(@Actions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Cursor => m_Wrapper.m_BuildMode_Cursor;
-        public InputAction @Rotate => m_Wrapper.m_BuildMode_Rotate;
-        public InputAction @Place => m_Wrapper.m_BuildMode_Place;
-        public InputActionMap Get() { return m_Wrapper.m_BuildMode; }
-        public void Enable() { Get().Enable(); }
-        public void Disable() { Get().Disable(); }
-        public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(BuildModeActions set) { return set.Get(); }
-        public void AddCallbacks(IBuildModeActions instance)
-        {
-            if (instance == null || m_Wrapper.m_BuildModeActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_BuildModeActionsCallbackInterfaces.Add(instance);
-            @Cursor.started += instance.OnCursor;
-            @Cursor.performed += instance.OnCursor;
-            @Cursor.canceled += instance.OnCursor;
-            @Rotate.started += instance.OnRotate;
-            @Rotate.performed += instance.OnRotate;
-            @Rotate.canceled += instance.OnRotate;
-            @Place.started += instance.OnPlace;
-            @Place.performed += instance.OnPlace;
-            @Place.canceled += instance.OnPlace;
-        }
-
-        private void UnregisterCallbacks(IBuildModeActions instance)
-        {
-            @Cursor.started -= instance.OnCursor;
-            @Cursor.performed -= instance.OnCursor;
-            @Cursor.canceled -= instance.OnCursor;
-            @Rotate.started -= instance.OnRotate;
-            @Rotate.performed -= instance.OnRotate;
-            @Rotate.canceled -= instance.OnRotate;
-            @Place.started -= instance.OnPlace;
-            @Place.performed -= instance.OnPlace;
-            @Place.canceled -= instance.OnPlace;
-        }
-
-        public void RemoveCallbacks(IBuildModeActions instance)
-        {
-            if (m_Wrapper.m_BuildModeActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        public void SetCallbacks(IBuildModeActions instance)
-        {
-            foreach (var item in m_Wrapper.m_BuildModeActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_BuildModeActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    public BuildModeActions @BuildMode => new BuildModeActions(this);
     public interface IPlayerActions
     {
         void OnZoom(InputAction.CallbackContext context);
@@ -957,11 +909,8 @@ public partial class @Actions: IInputActionCollection2, IDisposable
         void OnBuildMode(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnDestroyBuilding(InputAction.CallbackContext context);
-    }
-    public interface IBuildModeActions
-    {
         void OnCursor(InputAction.CallbackContext context);
-        void OnRotate(InputAction.CallbackContext context);
-        void OnPlace(InputAction.CallbackContext context);
+        void OnRotateBuilding(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

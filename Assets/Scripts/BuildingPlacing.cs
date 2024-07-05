@@ -9,14 +9,14 @@ using static Actions;
 public class BuildingPlacing : MonoBehaviour
 {
     private InputAction buildModeAction;
-    private BuildModeActions buildModeActions;
     private InputAction cursorAction;
     private InputAction rotateAction;
-    private InputAction placeAction;
+    private InputAction interactAction;
     private InputAction destroyAction;
 
     private bool inBuildMode = false;
     private bool buildModePaused = false;
+    private bool inDestroyMode = false;
 
     //Cube placeholder until real building possible
     public GameObject selectedBuilding;
@@ -31,6 +31,8 @@ public class BuildingPlacing : MonoBehaviour
     //for checking if ground type
     private String groundTag;
 
+    Ray ray;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,20 +40,27 @@ public class BuildingPlacing : MonoBehaviour
         PlayerActions playerActions = actions.Player;
         playerActions.Enable();
         buildModeAction = playerActions.BuildMode;
-        buildModeActions = actions.BuildMode;
-        cursorAction = buildModeActions.Cursor;
-        rotateAction = buildModeActions.Rotate;
-        placeAction = buildModeActions.Place;
+        cursorAction = playerActions.Cursor;
+        rotateAction = playerActions.RotateBuilding;
+        interactAction = playerActions.Interact;
         destroyAction = playerActions.DestroyBuilding;
     }
 
     // Update is called once per frame
     void Update()
     {
+        ray = Camera.main.ScreenPointToRay(cursorAction.ReadValue<Vector2>());
         if (destroyAction.WasPressedThisFrame())
+        {
+            inDestroyMode = !inDestroyMode;
+            DisableBuildMode();
+        }
+
+        if (inDestroyMode && interactAction.WasPressedThisFrame())
         {
             DestroyBuilding();
         }
+
         //When B is pressed go to build mode
         if (buildModeAction.WasPressedThisFrame())
         {
@@ -77,7 +86,7 @@ public class BuildingPlacing : MonoBehaviour
         // 0 = left
         //Checks if preview is currently intersecting by checking if the color has been changed to red by the BuildingSpaceAvailable Script
         if (
-            placeAction.WasPressedThisFrame()
+            interactAction.WasPressedThisFrame()
             && previousInstance != null
             && previousInstance.GetComponent<MeshRenderer>().material.GetColor("_previewColor")
                 != new Color(1f, 0.1f, 0.1f)
@@ -93,45 +102,40 @@ public class BuildingPlacing : MonoBehaviour
         inBuildMode = true;
     }
 
+    public void DisableBuildMode()
+    {
+        inBuildMode = false;
+    }
+
     public void pauseBuildMode()
     {
-        buildModeActions.Disable();
         buildModePaused = true;
     }
 
     public void resumeBuildMode()
     {
         buildModePaused = false;
-        if (inBuildMode)
-        {
-            buildModeActions.Enable();
-        }
     }
 
     private void changeBuildMode()
     {
         if (inBuildMode)
         {
-            buildModeActions.Disable();
-            inBuildMode = false;
+            DisableBuildMode();
         }
         else
         {
             enableBuildMode();
-            if (!buildModePaused)
-            {
-                buildModeActions.Enable();
-            }
+            inDestroyMode = false;
         }
     }
 
     private void PlacePreview()
     {
-        Ray ray = Camera.main.ScreenPointToRay(cursorAction.ReadValue<Vector2>());
-        //Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red, 10f);
+        Debug.DrawRay(ray.origin, ray.direction * 1000, Color.blue, 10f);
         //layer 3 == BuildableOn
         if (
-            Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview"))
+            Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview", "Building"))
             //unter keinen umständen hinterfragen| guckt ob layer in der mask ist
             && LayerMask.GetMask("BuildableOn", "OrePlace")
                 == (
@@ -146,6 +150,7 @@ public class BuildingPlacing : MonoBehaviour
                 )
         )
         {
+            Debug.Log(hit.collider.gameObject.tag);
             groundTag = hit.collider.gameObject.tag;
             previousHitPos = new Vector3(
                 Mathf.RoundToInt(hit.point.x),
@@ -189,20 +194,24 @@ public class BuildingPlacing : MonoBehaviour
 
     private void DestroyBuilding()
     {
-        Ray ray = Camera.main.ScreenPointToRay(cursorAction.ReadValue<Vector2>());
         //Debug.DrawRay(ray.origin, ray.direction * 1000, Color.red, 10f);
         GameObject target = null;
-        if ( Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview")))
+        if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, ~LayerMask.GetMask("Preview")))
         {
             Debug.Log(hit.collider.gameObject);
             target = 6 == hit.collider.gameObject.layer ? hit.collider.gameObject : null;
-        }else
+        }
+        else
         {
             return;
         }
 
         if (target)
         {
+            while (target.transform.parent != null)
+            {
+                target = target.transform.parent.gameObject;
+            }
             foreach (Transform t in target.GetComponentInChildren<Transform>())
             {
                 if (t.gameObject)

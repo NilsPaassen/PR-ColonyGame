@@ -49,6 +49,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Cursor",
+                    "type": "Value",
+                    "id": "0623c165-9413-442e-99d5-7c34479a4dcd",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "RotateBuilding",
+                    "type": "Button",
+                    "id": "c5c62530-6144-4a2f-837f-3b2099e524a5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "a6c6dca6-3523-41ef-a03d-95cb222e4644",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -645,45 +672,10 @@
                     "action": "DestroyBuilding",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Build Mode",
-            "id": "11bcd613-3af2-42ff-80b4-af2811878114",
-            "actions": [
-                {
-                    "name": "Cursor",
-                    "type": "Value",
-                    "id": "f3063794-c3f5-4d4a-ac84-49f820e48948",
-                    "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 },
-                {
-                    "name": "Rotate",
-                    "type": "Button",
-                    "id": "f01fee13-f65f-4942-9a86-223e7df2e7db",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Place",
-                    "type": "Button",
-                    "id": "830f68dd-1b7c-4138-b327-a691318acf3e",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
                 {
                     "name": "",
-                    "id": "a7aa5400-81da-4ed7-8fe6-ab8e443f62fb",
+                    "id": "fa4b9f1a-22db-4359-b6eb-517ab8bd18a6",
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
@@ -694,23 +686,23 @@
                 },
                 {
                     "name": "",
-                    "id": "059ef156-0200-4fc0-a83e-6d771b0f8f4c",
-                    "path": "<Mouse>/leftButton",
+                    "id": "2bd51349-44f8-456f-ba72-183aeb1f26a5",
+                    "path": "<Keyboard>/#(R)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Place",
+                    "action": "RotateBuilding",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "ef68a01b-cfe9-44e1-9317-ffe4fcac3861",
-                    "path": "<Keyboard>/#(R)",
+                    "id": "bbe15a5d-d682-42df-b894-3aa269a2a3ac",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Rotate",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
