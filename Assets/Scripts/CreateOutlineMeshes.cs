@@ -6,7 +6,8 @@ using UnityEngine.UIElements;
 
 public class CreateOutlineMeshes : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject[] additionalObjects;
+
     void Start()
     {
         GameObject[] buildings = GameObject.FindFirstObjectByType<BuildingsSelector>().buildings;
@@ -14,6 +15,10 @@ public class CreateOutlineMeshes : MonoBehaviour
         foreach (GameObject building in buildings)
         {
             GenerateOutlineMesh(building);
+        }
+        foreach (GameObject additionalObject in additionalObjects)
+        {
+            GenerateOutlineMesh(additionalObject);
         }
     }
 
