@@ -47,7 +47,6 @@ public class Container : Building
     void TakeInResource()
     {
         buildingResourceHandler[resourceType]++;
-        buildingResourceHandler.Add(resourceType, 1);
         storedAmount++;
         Destroy(inputConveyor.carriedObjects[0]);
     }
@@ -55,6 +54,11 @@ public class Container : Building
     protected override void Start()
     {
         base.Start();
+    }
+
+    public override void OnDestroyCustom()
+    {
+        buildingResourceHandler[resourceType] =- storedAmount;
     }
 
     protected override void Update()

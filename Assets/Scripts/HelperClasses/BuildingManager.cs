@@ -17,6 +17,32 @@ public class BuildingManager : MonoBehaviour
         return System.Array.Find(subArray, b => b.name == buildingName);
     }
 
+    public JSONStructures.Building GetFromAllBuildings(string buildingName)
+    {
+        JSONStructures.Building building = GetLogisticBuilding(buildingName);
+        if (building != null)
+        {
+            return building;
+        }
+        building = GetResourceGatheringBuilding(buildingName);
+        if (building != null)
+        {
+            return building;
+        }
+        building = GetEnergyBuilding(buildingName);
+        if (building != null)
+        {
+            return building;
+        }
+        building = GetProductionBuilding(buildingName);
+        if (building != null)
+        {
+            return building;
+        }
+        return GetSettelerBuilding(buildingName);
+        
+    }
+
     public JSONStructures.Building GetLogisticBuilding(string buildingName)
     {
         return GetBuilding(buildingName, allBuildings.logisticBuildings);
@@ -30,6 +56,11 @@ public class BuildingManager : MonoBehaviour
     public JSONStructures.Building GetEnergyBuilding(string buildingName)
     {
         return GetBuilding(buildingName, allBuildings.energyBuildings);
+    }
+
+    public JSONStructures.Building GetProductionBuilding(string buildingName)
+    {
+        return GetBuilding(buildingName, allBuildings.productionBuildings);
     }
 
     public JSONStructures.Building GetSettelerBuilding(string buildingName)

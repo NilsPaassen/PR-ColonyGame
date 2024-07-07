@@ -12,7 +12,7 @@
       "cost": [{ "resourceName": "SteelBar", "amount": 1 }]
     },
     {
-      "name": "Storage",
+      "name": "Container",
       "cost": [{ "resourceName": "SteelBar", "amount": 6 }]
     }
   ],
@@ -72,7 +72,7 @@
   ],
   "settlerBuildings": [
     {
-      "name": "SmallHut",
+      "name": "House",
       "cost": [
         { "resourceName": "SteelBar", "amount": 3 },
         { "resourceName": "Cable", "amount": 5 },
@@ -80,6 +80,32 @@
       ],
       "livingSpace": 5,
       "energyConsumed": 2
+    }
+  ],
+  "productionBuildings": [
+    {
+      "name": "KleineFabrik",
+      "cost": [
+        { "resourceName": "IronBar", "amount": 1 },
+        { "resourceName": "Cable", "amount": 3 }
+      ],
+      "worker": 2
+    },
+    {
+      "name": "GrosseFabrik",
+      "cost": [
+        { "resourceName": "IronBar", "amount": 1 },
+        { "resourceName": "Cable", "amount": 3 }
+      ],
+      "worker": 2
+    },
+    {
+      "name": "Smeltery",
+      "cost": [
+        { "resourceName": "IronBar", "amount": 1 },
+        { "resourceName": "Cable", "amount": 3 }
+      ],
+      "worker": 2
     }
   ]
 }

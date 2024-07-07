@@ -36,6 +36,7 @@ public class JSONStructures : MonoBehaviour
         public Building[] resourceGatheringBuildings;
         public Building[] energyBuildings;
         public Building[] settlerBuildings;
+        public Building[] productionBuildings;
     }
 
     [Serializable]

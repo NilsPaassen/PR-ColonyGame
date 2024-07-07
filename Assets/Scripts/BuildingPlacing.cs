@@ -36,9 +36,18 @@ public class BuildingPlacing : MonoBehaviour
 
     Ray ray;
 
+    private BuildingManager buildingManager;
+    private BuildingResourceHandler buildingResourceHandler;
+
     // Start is called before the first frame update
     void Start()
     {
+        buildingManager = GameObject
+            .FindGameObjectWithTag("WorldController")
+            .GetComponent<BuildingManager>();
+        buildingResourceHandler = GameObject
+            .FindGameObjectWithTag("WorldController")
+            .GetComponent<BuildingResourceHandler>();
         Actions actions = new();
         PlayerActions playerActions = actions.Player;
         playerActions.Enable();
@@ -90,6 +99,10 @@ public class BuildingPlacing : MonoBehaviour
             }
             if (interactAction.WasPressedThisFrame() && target != null)
             {
+                if (target.TryGetComponent<Building>(out Building b))
+                {
+                    b.OnDestroyCustom();
+                }
                 DestroyBuilding(target);
             }
             previousTarget = target;
@@ -98,7 +111,7 @@ public class BuildingPlacing : MonoBehaviour
         //When B is pressed go to build mode
         if (buildModeAction.WasPressedThisFrame())
         {
-            changeBuildMode();
+            ChangeBuildMode();
         }
 
         if (inBuildMode && !buildModePaused)
@@ -158,17 +171,17 @@ public class BuildingPlacing : MonoBehaviour
         inBuildMode = false;
     }
 
-    public void pauseBuildMode()
+    public void PauseBuildMode()
     {
         buildModePaused = true;
     }
 
-    public void resumeBuildMode()
+    public void ResumeBuildMode()
     {
         buildModePaused = false;
     }
 
-    private void changeBuildMode()
+    private void ChangeBuildMode()
     {
         if (inBuildMode)
         {
@@ -205,7 +218,6 @@ public class BuildingPlacing : MonoBehaviour
                 )
         )
         {
-            Debug.Log(hit.collider.gameObject.tag);
             groundTag = hit.collider.gameObject.tag;
             previousHitPos = new Vector3(
                 Mathf.RoundToInt(hit.point.x),
@@ -229,7 +241,7 @@ public class BuildingPlacing : MonoBehaviour
             groundTag = hit.collider.gameObject.tag;
             //colors building red if they cannot be build
             //TODO: Add resource check
-            if (!BuildingIsPlacable())
+            if (!BuildingIsPlacable() || !EnoughResourcesForBuilding())
             {
                 foreach (
                     MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>()
@@ -266,6 +278,7 @@ public class BuildingPlacing : MonoBehaviour
 
     private void PlaceBuilding()
     {
+        if (true) { }
         //Sets the Material Parameters in all Children of the placed Building
         foreach (
             MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>()
@@ -332,6 +345,28 @@ public class BuildingPlacing : MonoBehaviour
         )
         {
             return false;
+        }
+        return true;
+    }
+
+    private bool EnoughResourcesForBuilding()
+    {
+        //for test purpose
+        return true;
+        Debug.Log(selectedBuilding.name);
+        JSONStructures.Resource[] required = buildingManager
+            .GetFromAllBuildings(selectedBuilding.name)
+            .cost;
+
+        foreach (JSONStructures.Resource resource in required)
+        {
+            if (
+                buildingResourceHandler.storage.TryGetValue(resource.resourceName, out int value)
+                && value < resource.amount
+            )
+            {
+                return false;
+            }
         }
         return true;
     }

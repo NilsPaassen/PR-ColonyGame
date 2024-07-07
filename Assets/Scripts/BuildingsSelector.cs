@@ -44,12 +44,12 @@ public class BuildingsSelector : MonoBehaviour
 
     private void OnBuildingsSelectorMouseEnter(MouseEnterEvent evt)
     {
-        buildingPlacing.pauseBuildMode();
+        buildingPlacing.PauseBuildMode();
     }
 
     private void OnBuildingsSelectorMouseLeave(MouseLeaveEvent evt)
     {
-        buildingPlacing.resumeBuildMode();
+        buildingPlacing.ResumeBuildMode();
     }
 
     private EventCallback<ClickEvent> OnBuildingIconClick(GameObject building)
