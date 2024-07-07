@@ -58,7 +58,7 @@ public class Container : Building
 
     public override void OnDestroyCustom()
     {
-        buildingResourceHandler[resourceType] =- storedAmount;
+        buildingResourceHandler[resourceType] = -storedAmount;
     }
 
     protected override void Update()
