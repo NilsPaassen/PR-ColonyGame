@@ -30,7 +30,7 @@
     {
       "name": "Mine",
       "cost": [
-        { "resourceName": "IronBar", "amount": 2 },
+        { "resourceName": "IronBar", "amount": 3 },
         { "resourceName": "Cable", "amount": 10 }
       ],
       "worker": 2
@@ -94,16 +94,16 @@
     {
       "name": "GrosseFabrik",
       "cost": [
-        { "resourceName": "IronBar", "amount": 1 },
-        { "resourceName": "Cable", "amount": 3 }
+        { "resourceName": "IronBar", "amount": 10 },
+        { "resourceName": "Cable", "amount": 50 }
       ],
       "worker": 2
     },
     {
       "name": "Smeltery",
       "cost": [
-        { "resourceName": "IronBar", "amount": 1 },
-        { "resourceName": "Cable", "amount": 3 }
+        { "resourceName": "IronBar", "amount": 5 },
+        { "resourceName": "Cable", "amount": 20 }
       ],
       "worker": 2
     }

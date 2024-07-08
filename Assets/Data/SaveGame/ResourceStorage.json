@@ -1,0 +1,11 @@
+{
+  "resources": [
+    { "resourceName": "CopperOre", "amount": 0 },
+    { "resourceName": "IronOre", "amount": 0 },
+    { "resourceName": "CopperBar", "amount": 0 },
+    { "resourceName": "IronBar", "amount": 16 },
+    { "resourceName": "SteelBar", "amount": 0 },
+    { "resourceName": "Coal", "amount": 0 },
+    { "resourceName": "Cable", "amount": 20 }
+  ]
+}

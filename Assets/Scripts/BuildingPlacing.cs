@@ -351,20 +351,18 @@ public class BuildingPlacing : MonoBehaviour
 
     private bool EnoughResourcesForBuilding()
     {
-        //for test purpose
-        return true;
-        Debug.Log(selectedBuilding.name);
         JSONStructures.Resource[] required = buildingManager
             .GetFromAllBuildings(selectedBuilding.name)
             .cost;
-
         foreach (JSONStructures.Resource resource in required)
         {
+            Debug.Log(resource.resourceName + " " + resource.amount);
             if (
                 buildingResourceHandler.storage.TryGetValue(resource.resourceName, out int value)
                 && value < resource.amount
             )
             {
+                Debug.Log(value);
                 return false;
             }
         }

@@ -20,6 +20,11 @@ public class JSONStructures : MonoBehaviour
         public string resourceName;
         public int amount;
     }
+    [Serializable]
+    public class Resources
+    {
+        public Resource[] resources;
+    }
 
     [Serializable]
     public class Recipe
