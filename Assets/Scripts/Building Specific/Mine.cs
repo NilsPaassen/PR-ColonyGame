@@ -14,6 +14,12 @@ public class Mine : Building
 
     public String resourceType;
 
+    //Production Timer
+    public float productionTime = 10f;
+    public float remainigTimeTillProduction = 10f;
+
+    public bool isBuild = false;
+
     protected override void Start()
     {
         base.Start();
@@ -22,9 +28,22 @@ public class Mine : Building
     // Update is called once per frame
     protected override void Update()
     {
-        if (resourcesStored > 0 && outputConveyor.carriedObjects[2] == null)
+        if (isBuild)
         {
-            OutputResource();
+            if (remainigTimeTillProduction <= 0 && resourcesStored < resourceLimit)
+            {
+                resourcesStored++;
+                remainigTimeTillProduction = productionTime;
+            }
+            else if (remainigTimeTillProduction > 0)
+            {
+                Debug.Log(resourcesStored);
+                remainigTimeTillProduction -= Time.deltaTime;
+            }
+            if (resourcesStored > 0 && outputConveyor.carriedObjects[2] == null)
+            {
+                OutputResource();
+            }
         }
     }
 
@@ -40,27 +59,14 @@ public class Mine : Building
             Quaternion.identity
         );
         outputConveyor.carriedObjects[2].tag = resourceType;
-    }
-
-    public void ProduceResource()
-    {
-        if (outputConveyor.carriedObjects[2] == null)
-        {
-            OutputResource();
-        }
-        else if (resourcesStored < resourceLimit)
-        {
-            resourcesStored++;
-        }
-
-        Invoke("ProduceResource", 1f);
+        resourcesStored--;
     }
 
     public override void OnBuild(String groundType)
     {
         resourceType = groundType;
         outputConveyor = outputConveyorObject.GetComponent<ConveyorBelt>();
-        Invoke("ProduceResource", 1f);
         outputConveyor.OnBuild();
+        isBuild = true;
     }
 }
