@@ -278,7 +278,6 @@ public class BuildingPlacing : MonoBehaviour
 
     private void PlaceBuilding()
     {
-        if (true) { }
         //Sets the Material Parameters in all Children of the placed Building
         foreach (
             MeshRenderer meshRenderer in previousInstance.GetComponentsInChildren<MeshRenderer>()
@@ -310,6 +309,15 @@ public class BuildingPlacing : MonoBehaviour
         foreach (Collider collider in previousInstance.GetComponentsInChildren<Collider>())
         {
             collider.isTrigger = true;
+        }
+
+        //subtracts amount needed for building from storage
+        JSONStructures.Resource[] required = buildingManager
+            .GetFromAllBuildings(selectedBuilding.name)
+            .cost;
+        foreach (JSONStructures.Resource resource in required)
+        {
+            buildingResourceHandler.storage[resource.resourceName] -= resource.amount;
         }
 
         //tries to activate the building specific scripts
@@ -356,13 +364,11 @@ public class BuildingPlacing : MonoBehaviour
             .cost;
         foreach (JSONStructures.Resource resource in required)
         {
-            Debug.Log(resource.resourceName + " " + resource.amount);
             if (
                 buildingResourceHandler.storage.TryGetValue(resource.resourceName, out int value)
                 && value < resource.amount
             )
             {
-                Debug.Log(value);
                 return false;
             }
         }
