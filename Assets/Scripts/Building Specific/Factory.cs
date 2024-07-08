@@ -21,6 +21,7 @@ public class Factory : Building
     public GameObject outputProductModel;
     public String resource;
     public String secondaryResource;
+
     //Storage
     private int storedResources = 0;
     private int storedSecondaryResources = 0;
@@ -75,7 +76,8 @@ public class Factory : Building
             )
             {
                 ProduceResource();
-            }else if(remainigTimeTillProduction > 0)
+            }
+            else if (remainigTimeTillProduction > 0)
             {
                 remainigTimeTillProduction -= Time.deltaTime;
             }

@@ -21,6 +21,4 @@ public class BuildingResourceHandler : MonoBehaviour
             storage.Add(r.resourceName, r.amount);
         }
     }
-
-    
 }
