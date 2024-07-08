@@ -40,7 +40,6 @@ public class BuildingManager : MonoBehaviour
             return building;
         }
         return GetSettelerBuilding(buildingName);
-        
     }
 
     public JSONStructures.Building GetLogisticBuilding(string buildingName)
