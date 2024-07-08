@@ -15,6 +15,13 @@ public class JSONStructures : MonoBehaviour
     }
 
     [Serializable]
+    public class PlacedBuilding
+    {
+        public Transform transform;
+        public Factory factory;
+    }
+
+    [Serializable]
     public class Resource
     {
         public string resourceName;

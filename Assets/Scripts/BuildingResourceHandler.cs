@@ -20,28 +20,7 @@ public class BuildingResourceHandler : MonoBehaviour
         {
             storage.Add(r.resourceName, r.amount);
         }
-        if (storage.TryGetValue("IronBar", out int value))
-        {
-            Debug.Log(value);
-        }
     }
 
-    public void OnSave()
-    {
-        JSONStructures.Resource r = new JSONStructures.Resource();
-        JSONStructures.Resource[] resources = new JSONStructures.Resource[storage.Count];
-        int i = 0;
-        foreach (KeyValuePair<string, int> entry in storage)
-        {
-            r.resourceName = entry.Key;
-            r.amount = entry.Value;
-            resources[i] = r;
-            i++;
-        }
-        JSONStructures.Resources jsonResources = new JSONStructures.Resources();
-        jsonResources.resources = resources;
-
-        File.WriteAllText(AssetDatabase.GetAssetPath(jsonFile), JsonUtility.ToJson(jsonResources));
-        EditorUtility.SetDirty(jsonFile);
-    }
+    
 }

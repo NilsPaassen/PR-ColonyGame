@@ -2,9 +2,12 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[Serializable]
 public class Factory : Building
 {
     public String factoryType = "small";
+
+    //Conveyor Belts
     public GameObject inputCBObject;
     public GameObject secondaryInputCBObject;
     public GameObject outputCBObject;
@@ -13,23 +16,25 @@ public class Factory : Building
     private ConveyorBelt secondaryInput;
     private ConveyorBelt outputConveyor;
 
+    //Resources
     public String selectedProduct;
     public GameObject outputProductModel;
-
     public String resource;
     public String secondaryResource;
+    //Storage
     private int storedResources = 0;
     private int storedSecondaryResources = 0;
     private int storedResourcesLimit = 100;
     private int storedSecondaryResourcesLimit = 100;
     private int storedProduct = 0;
     public int storedProductLimit = 100;
-
     public int producedAmount = 5;
     public int requiredResources = 1;
     public int requiredSecondaryResources = 0;
 
-    private bool productionIsInvoked = false;
+    //Production Timer
+    public float productionTime = 10f;
+    public float remainigTimeTillProduction = 10f;
     private bool isBuild = false;
 
     protected override void Start()
@@ -63,16 +68,17 @@ public class Factory : Building
             }
 
             if (
-                !productionIsInvoked
+                remainigTimeTillProduction <= 0
                 && storedResources >= requiredResources
                 && storedSecondaryResources >= requiredSecondaryResources
                 && storedProduct + producedAmount <= storedProductLimit
             )
             {
-                productionIsInvoked = true;
-                Invoke("ProduceResource", 1f);
+                ProduceResource();
+            }else if(remainigTimeTillProduction > 0)
+            {
+                remainigTimeTillProduction -= Time.deltaTime;
             }
-
             if (storedProduct > 0 && outputConveyor.carriedObjects[2] == null)
             {
                 OutputResource();
@@ -86,7 +92,8 @@ public class Factory : Building
         storedResources = -requiredResources;
         storedSecondaryResources = -requiredSecondaryResources;
         storedProduct = +producedAmount;
-        productionIsInvoked = false;
+        //resets timer
+        remainigTimeTillProduction = productionTime;
     }
 
     void OutputResource()
