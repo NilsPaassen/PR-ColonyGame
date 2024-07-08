@@ -18,14 +18,12 @@ public class BuildingResourceHandler : MonoBehaviour
                 .resources
         )
         {
-            
             storage.Add(r.resourceName, r.amount);
         }
-        if (storage.TryGetValue("IronBar",out int value))
+        if (storage.TryGetValue("IronBar", out int value))
         {
             Debug.Log(value);
         }
-        
     }
 
     public void OnSave()

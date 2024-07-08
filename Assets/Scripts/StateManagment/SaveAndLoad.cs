@@ -9,7 +9,8 @@ public class SaveAndLoad : MonoBehaviour
 {
     public TextAsset initResourceStorage;
 
-    public void NewGame() { 
+    public void NewGame()
+    {
         ResetResourceStorage();
     }
 
