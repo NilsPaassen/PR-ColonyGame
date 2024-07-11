@@ -365,15 +365,17 @@ MonoBehaviour:
   inputCBObject: {fileID: 3823269784285023562}
   secondaryInputCBObject: {fileID: 0}
   outputCBObject: {fileID: 1548320170327426695}
-  selectedProduct: IronBar
+  selectedProduct: CopperBar
   outputProductModel: {fileID: 5381639898744295563, guid: 9ca5d36e357b5e944977ffea23847ef3,
     type: 3}
-  resource: IronOre
+  resource: CopperOre
   secondaryResource: 
   storedProductLimit: 100
   producedAmount: 1
   requiredResources: 1
   requiredSecondaryResources: 0
+  productionTime: 10
+  remainigTimeTillProduction: 10
 --- !u!114 &-3066879500449200787
 MonoBehaviour:
   m_ObjectHideFlags: 0

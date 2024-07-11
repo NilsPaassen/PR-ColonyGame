@@ -426,14 +426,17 @@ MonoBehaviour:
   inputCBObject: {fileID: 7637784026127557152}
   secondaryInputCBObject: {fileID: 3754454058399528982}
   outputCBObject: {fileID: 8973882302078631976}
-  selectedProduct: 
-  outputProductModel: {fileID: 0}
-  resource: 
+  selectedProduct: Cable
+  outputProductModel: {fileID: 5381639898744295563, guid: 9ca5d36e357b5e944977ffea23847ef3,
+    type: 3}
+  resource: CopperBar
   secondaryResource: 
   storedProductLimit: 100
   producedAmount: 5
   requiredResources: 1
   requiredSecondaryResources: 0
+  productionTime: 10
+  remainigTimeTillProduction: 10
 --- !u!65 &7925391416988563584
 BoxCollider:
   m_ObjectHideFlags: 0

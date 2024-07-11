@@ -245,12 +245,14 @@ MonoBehaviour:
   selectedProduct: Cable
   outputProductModel: {fileID: 5381639898744295563, guid: 9ca5d36e357b5e944977ffea23847ef3,
     type: 3}
-  resource: 
+  resource: CopperBar
   secondaryResource: 
   storedProductLimit: 100
   producedAmount: 5
   requiredResources: 1
   requiredSecondaryResources: 0
+  productionTime: 10
+  remainigTimeTillProduction: 10
 --- !u!54 &434309603006586384
 Rigidbody:
   m_ObjectHideFlags: 0

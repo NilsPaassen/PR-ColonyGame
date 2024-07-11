@@ -48,7 +48,7 @@ public class Container : Building
     {
         buildingResourceHandler[resourceType]++;
         storedAmount++;
-        Destroy(inputConveyor.carriedObjects[0]);
+        Destroy(inputConveyor.carriedObjects[2]);
     }
 
     protected override void Start()
@@ -66,7 +66,7 @@ public class Container : Building
         base.Update();
         if (isBuild)
         {
-            if (storedAmount < storedLimit && inputConveyor.carriedObjects[0] != null)
+            if (storedAmount < storedLimit && inputConveyor.carriedObjects[2] != null)
             {
                 if (resourceType == "" || resourceType == null)
                 {
@@ -74,10 +74,10 @@ public class Container : Building
                     {
                         buildingResourceHandler.Add(resourceType, 0);
                     }
-                    resourceType = inputConveyor.carriedObjects[0].tag;
+                    resourceType = inputConveyor.carriedObjects[2].tag;
                     TakeInResource();
                 }
-                else if (inputConveyor.carriedObjects[0].CompareTag(resourceType))
+                else if (inputConveyor.carriedObjects[2].CompareTag(resourceType))
                 {
                     TakeInResource();
                 }

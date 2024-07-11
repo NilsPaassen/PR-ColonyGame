@@ -196,7 +196,8 @@ MonoBehaviour:
   resourceType: 
   storedLimit: 100
   storedAmount: 0
-  outputModel: {fileID: 0}
+  outputModel: {fileID: 5381639898744295563, guid: 9ca5d36e357b5e944977ffea23847ef3,
+    type: 3}
 --- !u!1001 &4058117371831262185
 PrefabInstance:
   m_ObjectHideFlags: 0

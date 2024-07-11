@@ -37,7 +37,6 @@ public class Mine : Building
             }
             else if (remainigTimeTillProduction > 0)
             {
-                Debug.Log(resourcesStored);
                 remainigTimeTillProduction -= Time.deltaTime;
             }
             if (resourcesStored > 0 && outputConveyor.carriedObjects[2] == null)

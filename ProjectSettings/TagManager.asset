@@ -15,6 +15,7 @@ TagManager:
   - Coal
   - Sun
   - ConveyorBelt
+  - Cable
   layers:
   - Default
   - TransparentFX
