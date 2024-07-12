@@ -23,13 +23,15 @@ public class ModeIndicator : MonoBehaviour
     void Update()
     {
         Mode newMode = buildingPlacing.GetMode();
-        if (currentMode == newMode) {
+        if (currentMode == newMode)
+        {
             return;
         }
         selectMode.AddToClassList("hidden");
         buildMode.AddToClassList("hidden");
         destroyMode.AddToClassList("hidden");
-        switch(newMode) {
+        switch (newMode)
+        {
             case Mode.Select:
                 selectMode.RemoveFromClassList("hidden");
                 break;

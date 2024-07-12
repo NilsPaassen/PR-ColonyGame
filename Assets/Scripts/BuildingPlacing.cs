@@ -157,11 +157,14 @@ public class BuildingPlacing : MonoBehaviour
         }
     }
 
-    public Mode GetMode() {
-        if (inBuildMode) {
+    public Mode GetMode()
+    {
+        if (inBuildMode)
+        {
             return Mode.Build;
         }
-        if (inDestroyMode) {
+        if (inDestroyMode)
+        {
             return Mode.Destroy;
         }
         return Mode.Select;
