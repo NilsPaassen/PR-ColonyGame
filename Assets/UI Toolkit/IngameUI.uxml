@@ -74,5 +74,10 @@
                 <ui:VisualElement name="BuildingIcon" style="flex-grow: 1; width: 55px; height: 55px; max-width: 55px; max-height: 55px; background-image: url(&quot;project://database/Assets/UI%20Toolkit/Icons/Flieband_Icon.png?fileID=2800000&amp;guid=6f0c30605262257469ad6d66f50384da&amp;type=3#Flieband_Icon&quot;); align-items: center; justify-content: center; align-self: auto;" />
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="ModeIndicator" class="mode-indicator">
+            <ui:VisualElement name="SelectMode" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/IndikatorBlau.png?fileID=2800000&amp;guid=753bbea30a76916459facc716a538bd4&amp;type=3#IndikatorBlau&quot;); width: 65px; height: 65px;" />
+            <ui:VisualElement name="BuildMode" class="hidden" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/IndikatorGr%C3%BCn.png?fileID=2800000&amp;guid=9e6a57e720101fc40815d0e45a0645ba&amp;type=3#IndikatorGrün&quot;); width: 65px; height: 65px;" />
+            <ui:VisualElement name="DestroyMode" class="hidden" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/IndikatorRot.png?fileID=2800000&amp;guid=26275639f8ab37b46b55e6d34cab7c1f&amp;type=3#IndikatorRot&quot;); width: 65px; height: 65px;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

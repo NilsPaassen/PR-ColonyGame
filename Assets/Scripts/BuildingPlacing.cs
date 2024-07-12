@@ -157,6 +157,16 @@ public class BuildingPlacing : MonoBehaviour
         }
     }
 
+    public Mode GetMode() {
+        if (inBuildMode) {
+            return Mode.Build;
+        }
+        if (inDestroyMode) {
+            return Mode.Destroy;
+        }
+        return Mode.Select;
+    }
+
     public void EnableBuildMode()
     {
         buildingRotation = selectedBuilding.transform.rotation;
